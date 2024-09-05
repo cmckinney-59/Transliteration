@@ -5,6 +5,18 @@
 </head>
 <body>
     <h1 class="baybayin-header">By+byin+</h1>
+
     <p>Baybayin is an ancient writing script from the Philippines, used primarily before Spanish colonization. It was used by various ethnic groups in the Philippines, particularly the Tagalogs. The script was widely used in the 16th century but gradually declined due to the influence of the Latin alphabet introduced by the Spanish. However, there's been a resurgence of interest in Baybayin in recent years, with efforts to preserve and promote it as part of Filipino cultural heritage. Some people use it for art, tattoos, and even modern signage.</p>
+
+    <!-- Input box for user to type text -->
+    <label for="userInput">Type something: </label>
+    <input type="text" id="userInput" [(ngModel)]="userInput" />
+
+    <!-- Display the output in Baybayin font -->
+    <div class="baybayin-output">
+        <h2>Output in Baybayin:</h2>
+        <p class="baybayin-paragraph">{{ userInput }}</p>
+    </div>
+
 </body>
 </html>
