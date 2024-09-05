@@ -1,10 +1,4 @@
-// Define the custom Aurebesh font
-@font-face {
-    font-family: 'Deseret';
-    src: url('/src/assets/fonts/deseret/deseret_.ttf') format('truetype');
-  }
-  
-  // Apply the font to the header class
+// Apply the font to the header class
   .deseret-header {
     font-family: 'Deseret', sans-serif;
     // Additional styling for the header can be added here

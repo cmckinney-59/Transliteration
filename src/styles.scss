@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Baybayin';
+    src: url('./assets/fonts/baybayin/TagDoc93.ttf') format('truetype');
+  }
+
+// Define the custom Deseret font
+@font-face {
+    font-family: 'Deseret';
+    src: url('./assets/fonts/deseret/deseret_.ttf') format('truetype');
+  }
+
+// Define the custom Aurebesh font
+@font-face {
+    font-family: 'Aurebesh';
+    src: url('./assets/fonts/aurebesh/AurebeshBold-Rw1l.ttf') format('truetype');
+  }
