@@ -1,13 +1,5 @@
-// Define the custom Baybayin font
-@font-face {
-  font-family: 'Baybayin';
-  src: url('/src/assets/fonts/baybayin/TagalogStylized-GOJeq.ttf') format('truetype');
+.baybayin-header {
+  font-family: 'Baybayin', sans-serif;
+  font-size: 2rem;
+  color: #333;
 }
-  
-  // Apply the font to the header class
-  .baybayin-header {
-    font-family: 'Baybayin', sans-serif;
-    // Additional styling for the header can be added here
-    font-size: 2rem;
-    color: #333;
-  }
