@@ -9,6 +9,6 @@ export class ConvertNgAndMgaService {
 
   // Method to replace both 'ng' and 'mga' in one go
   replaceNgAndMga(input: string): string {
-      return input.replace(/ ng /g, ' nN ').replace(/ mga /g, ' mNa ');
+      return input.replace(/ ng /g, ' naN ').replace(/ mga /g, ' maNa ');
   }
 }
