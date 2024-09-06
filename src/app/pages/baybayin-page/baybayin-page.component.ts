@@ -11,4 +11,9 @@ import { FormsModule } from '@angular/forms';
 export class BaybayinPageComponent {
   // Variable to store user input
   userInput: string = '';
+
+  // Method to return the user input with 'a' removed for output
+  getFilteredOutput(): string {
+    return this.userInput.replace(/a/g, '');  // Remove 'a' from the user input for display
+  }
 }
