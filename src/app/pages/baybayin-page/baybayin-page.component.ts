@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ConvertNgAndMgaService } from '../../services/baybayin/convert-ng-and-mga.service';
 
 @Component({
   selector: 'app-baybayin-page',
@@ -12,8 +13,10 @@ export class BaybayinPageComponent {
   // Variable to store user input
   userInput: string = '';
 
-  // Method to return the user input with 'a' removed for output
-  getFilteredOutput(): string {
-    return this.userInput.replace(/a/g, '');  // Remove 'a' from the user input for display
+  constructor(private convertNgAndMgaService: ConvertNgAndMgaService) {}
+
+  // Method to return the user input with both 'ng' and 'mga' replaced
+  getCombinedTransformedOutput(): string {
+    return this.convertNgAndMgaService.replaceNgAndMga(this.userInput);
   }
 }
