@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ConvertNgAndMgaService } from '../../services/baybayin/convert-ng-and-mga.service';
 import { AddPlusAfterConsonantService } from '../../services/baybayin/add-plus-after-consonant.service';
 import { RemoveAAfterConsonantService } from '../../services/baybayin/remove-a-after-consonant.service';
+import { CapitalizeFirstVowelService } from '../../services/baybayin/capitalize-first-vowel.service';
 
 import { BaybayinTextProcessorService } from '../../services/baybayin/baybayin-text-processor.service';
 
@@ -21,7 +22,8 @@ export class BaybayinPageComponent {
     private convertNgAndMgaService: ConvertNgAndMgaService, 
     private addPlusAfterConsonantService: AddPlusAfterConsonantService,
     private removeAAfterConsonantService: RemoveAAfterConsonantService,
-    private baybayinTextProcessorService: BaybayinTextProcessorService
+    private baybayinTextProcessorService: BaybayinTextProcessorService,
+    private capitalizeFirstVowelService: CapitalizeFirstVowelService
   ) {}
 
   // Method to return the user input with both 'ng' and 'mga' replaced
@@ -48,5 +50,16 @@ export class BaybayinPageComponent {
     let rule2 = this.addPlusAfterConsonantService.addPlusIfConsonant(rule1);
     // Then apply removeAIfConsonant
     return this.removeAAfterConsonantService.removeAAfterConsonant(rule2);
+  }
+
+  getRule4(): string {
+    // First apply replaceNgAndMga
+    let rule1 = this.convertNgAndMgaService.replaceNgAndMga(this.userInput);
+    // Second apply addPlusIfConsonant
+    let rule2 = this.addPlusAfterConsonantService.addPlusIfConsonant(rule1);
+    // Third apply removeAIfConsonant
+    let rule3 = this.removeAAfterConsonantService.removeAAfterConsonant(rule2);
+    // Then apply capitalizeVowel
+    return this.capitalizeFirstVowelService.capitalizeVowel(rule3)
   }
 }
