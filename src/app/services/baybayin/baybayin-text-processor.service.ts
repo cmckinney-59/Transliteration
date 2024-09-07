@@ -6,6 +6,7 @@ import { AddPlusAfterConsonantService } from './add-plus-after-consonant.service
 import { RemoveAAfterConsonantService } from '../../services/baybayin/remove-a-after-consonant.service';
 import { CapitalizeFirstVowelService } from './capitalize-first-vowel.service';
 import { RemoveDashService } from './remove-dash.service';
+import { ReplaceCWithKService } from './replace-c-with-k.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class BaybayinTextProcessorService {
     private removeAAfterConsonantService: RemoveAAfterConsonantService,
     private capitalizeFirstVowelService: CapitalizeFirstVowelService,
     private removeDashService: RemoveDashService,
+    private replaceCWithKService: ReplaceCWithKService
   ) { }
 
   processBaybayinText(input: string): string {
@@ -28,6 +30,7 @@ export class BaybayinTextProcessorService {
     result = this.removeAAfterConsonantService.removeAAfterConsonant(result);
     result = this.capitalizeFirstVowelService.capitalizeVowel(result);
     result = this.removeDashService.removeDash(result);
+    result = this.replaceCWithKService.replaceCWithK(result);
     return result;
   }
 }
