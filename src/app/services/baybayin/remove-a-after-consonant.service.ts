@@ -8,6 +8,6 @@ export class RemoveAAfterConsonantService {
   constructor() { }
 
   removeAAfterConsonant(input: string): string {
-    return input.replace(/([bcdfghjklmnpqrstvwxyz])a/g, '$1');
+    return input.replace(/([BbCcDdFfGgHhJjKkLlMmNnPpQqRrSsTtVvWwXxYyZz])a/g, '$1');
   }
 }

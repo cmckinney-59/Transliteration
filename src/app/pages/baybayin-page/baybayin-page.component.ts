@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { BaybayinTextProcessorService } from '../../services/baybayin/baybayin-text-processor.service';
+import { ConvertToLowercaseService } from '../../services/baybayin/convert-to-lowercase.service';
 
 @Component({
   selector: 'app-baybayin-page',
@@ -15,11 +16,16 @@ export class BaybayinPageComponent {
   userInput: string = '';
 
   constructor(
-    private baybayinTextProcessorService: BaybayinTextProcessorService
+    private baybayinTextProcessorService: BaybayinTextProcessorService,
+    private convertToLowercaseService: ConvertToLowercaseService
   ) {}
 
   // Method to return the user input with both 'ng' and 'mga' replaced
   getCombinedOutput(): string {
     return this.baybayinTextProcessorService.processBaybayinText(this.userInput);
+  }
+
+  getLowercaseService(): string {
+    return this.convertToLowercaseService.convertToLowercase(this.userInput);
   }
 }
