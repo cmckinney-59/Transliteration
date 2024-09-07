@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+
 import { ConvertNgAndMgaService } from './convert-ng-and-mga.service';
+import { ReplaceNgWithCapitalNService } from './replace-ng-with-capital-n.service';
 import { AddPlusAfterConsonantService } from './add-plus-after-consonant.service';
 import { RemoveAAfterConsonantService } from '../../services/baybayin/remove-a-after-consonant.service';
 import { CapitalizeFirstVowelService } from './capitalize-first-vowel.service';
@@ -12,14 +14,16 @@ export class BaybayinTextProcessorService {
 
   constructor(
     private convertNgAndMgaService: ConvertNgAndMgaService,
+    private replaceNgWithCapitalNService: ReplaceNgWithCapitalNService,
     private addPlusAfterConsonantService: AddPlusAfterConsonantService,
     private removeAAfterConsonantService: RemoveAAfterConsonantService,
     private capitalizeFirstVowelService: CapitalizeFirstVowelService,
-    private removeDashService: RemoveDashService
+    private removeDashService: RemoveDashService,
   ) { }
 
   processBaybayinText(input: string): string {
     let result = this.convertNgAndMgaService.replaceNgAndMga(input);
+    result = this.replaceNgWithCapitalNService.replaceNgWithCapitalN(result);
     result = this.addPlusAfterConsonantService.addPlusIfConsonant(result);
     result = this.removeAAfterConsonantService.removeAAfterConsonant(result);
     result = this.capitalizeFirstVowelService.capitalizeVowel(result);
