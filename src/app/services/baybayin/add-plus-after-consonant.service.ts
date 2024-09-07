@@ -10,7 +10,7 @@ export class AddPlusAfterConsonantService {
   // Method to insert '+' between consecutive consonants and at the end if the word ends with a consonant
   addPlusIfConsonant(input: string): string {
     const consonantRegex = /[bcdfghjklmnpqrstvwxyz]/i;
-    const punctuationRegex = /[.,!?;]/;
+    const punctuationRegex = /[.,!?;-]/;
 
     return input.split(' ').map(word => {
       let transformedWord = '';
