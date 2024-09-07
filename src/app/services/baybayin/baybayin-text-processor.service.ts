@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { ConvertToLowercaseService } from './convert-to-lowercase.service';
 import { ConvertNgAndMgaService } from './convert-ng-and-mga.service';
 import { ReplaceNgWithCapitalNService } from './replace-ng-with-capital-n.service';
 import { AddPlusAfterConsonantService } from './add-plus-after-consonant.service';
@@ -14,6 +15,7 @@ import { ReplaceCWithKService } from './replace-c-with-k.service';
 export class BaybayinTextProcessorService {
 
   constructor(
+    private convertToLowercaseService: ConvertToLowercaseService,
     private convertNgAndMgaService: ConvertNgAndMgaService,
     private replaceNgWithCapitalNService: ReplaceNgWithCapitalNService,
     private addPlusAfterConsonantService: AddPlusAfterConsonantService,
@@ -24,7 +26,8 @@ export class BaybayinTextProcessorService {
   ) { }
 
   processBaybayinText(input: string): string {
-    let result = this.convertNgAndMgaService.replaceNgAndMga(input);
+    let result = this.convertToLowercaseService.convertToLowercase(input);
+    result = this.convertNgAndMgaService.replaceNgAndMga(result);
     result = this.replaceNgWithCapitalNService.replaceNgWithCapitalN(result);
     result = this.addPlusAfterConsonantService.addPlusIfConsonant(result);
     result = this.removeAAfterConsonantService.removeAAfterConsonant(result);
