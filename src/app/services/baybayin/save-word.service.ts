@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import PizZip from 'pizzip';
+import Pizzip from 'pizzip';
 import Docxtemplater from 'docxtemplater';
 import { saveAs } from 'file-saver';
 import * as JSZipUtils from 'jszip-utils';
@@ -18,12 +18,12 @@ export class SaveWordService {
 
   // Method to create and download a Word document
   generateWordDocument(processedText: string): void {
-    this.loadFile('assets/template.docx', (error, content) => {
+    this.loadFile('assets/word-templates/BaybayinTemplate.docx', (error, content) => {
       if (error) {
         throw error;
       }
 
-      const zip = new PizZip(content);
+      const zip = new Pizzip(content);
       const doc = new Docxtemplater().loadZip(zip);
 
       // Set the processedText to the placeholder in the Word template
