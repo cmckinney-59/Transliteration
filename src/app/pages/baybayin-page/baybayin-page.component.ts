@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { SaveWordService } from '../../services/baybayin/save-word.service';
 import { BaybayinTextProcessorService } from '../../services/baybayin/baybayin-text-processor.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class BaybayinPageComponent {
 
   constructor(
     private baybayinTextProcessorService: BaybayinTextProcessorService,
+    private saveWordService: SaveWordService
   ) {}
 
   // Method to return the user input with both 'ng' and 'mga' replaced
@@ -33,5 +35,10 @@ export class BaybayinPageComponent {
     }).catch(err => {
       console.error('Failed to copy text: ', err);
     });
+  }
+
+  // Call the service to generate the Word document
+  generateWordDocument(): void {
+    this.saveWordService.generateWordDocument(this.processedText);
   }
 }
