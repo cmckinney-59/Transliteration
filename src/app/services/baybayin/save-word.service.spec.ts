@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ExportWordService } from './save-word.service';
+import { SaveWordService } from './save-word.service';
 
-describe('ExportWordService', () => {
-  let service: ExportWordService;
+describe('SaveWordService', () => {
+  let service: SaveWordService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ExportWordService);
+    service = TestBed.inject(SaveWordService);
   });
 
   it('should be created', () => {
