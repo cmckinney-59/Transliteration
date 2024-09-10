@@ -25,6 +25,7 @@ export class SaveWordService {
 
       const zip = new Pizzip(content);
       const doc = new Docxtemplater().loadZip(zip);
+      doc.setOptions({ delimiters: { start: '{{', end: '}}' } });
 
       // Set the processedText to the placeholder in the Word template
       doc.setData({
