@@ -1,5 +1,4 @@
 1- Ability to save
-    - Word
     - Txt
     - Excell
 

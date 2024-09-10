@@ -18,7 +18,7 @@ export class SaveWordService {
 
   // Method to create and download a Word document
   generateWordDocument(processedText: string): void {
-    this.loadFile('assets/word-templates/BaybayinTemplate.docx', (error, content) => {
+    this.loadFile('assets/templates/baybayin/BaybayinTemplate.docx', (error, content) => {
       if (error) {
         throw error;
       }
