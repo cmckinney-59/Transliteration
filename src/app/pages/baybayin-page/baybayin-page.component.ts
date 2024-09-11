@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { SaveWordService } from '../../services/baybayin/save-word.service';
 import { SaveTextService } from '../../services/baybayin/save-text.service';
+import { SaveExcelService } from '../../services/baybayin/save-excel.service';
 import { BaybayinTextProcessorService } from '../../services/baybayin/baybayin-text-processor.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class BaybayinPageComponent {
   constructor(
     private baybayinTextProcessorService: BaybayinTextProcessorService,
     private saveWordService: SaveWordService,
-    private saveTextService: SaveTextService
+    private saveTextService: SaveTextService,
+    private saveExcelService: SaveExcelService
   ) {}
 
   // Method to return the user input with both 'ng' and 'mga' replaced
@@ -47,5 +49,10 @@ export class BaybayinPageComponent {
   // Call the service to generate and download the .txt file
   generateTextFile(): void {
     this.saveTextService.generateTextFile(this.processedText);
+  }
+
+  // Call the service to generate and download the Excel file
+  generateExcelFile(): void {
+    this.saveExcelService.generateExcelFile(this.processedText);
   }
 }
