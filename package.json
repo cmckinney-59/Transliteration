@@ -19,12 +19,15 @@
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
     "docxtemplater": "^3.22.1",
+    "exceljs": "^4.4.0",
     "file-saver": "^2.0.5",
     "jszip-utils": "^0.1.0",
     "pizzip": "^3.1.1",
     "rxjs": "~7.8.0",
+    "sheetjs-style": "^0.15.8",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",
+    "xlsx-style": "^0.8.13",
     "zone.js": "~0.14.10"
   },
   "devDependencies": {

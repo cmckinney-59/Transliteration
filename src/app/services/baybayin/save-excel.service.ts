@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as XLSX from 'xlsx';
+import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
 
 @Injectable({
@@ -9,23 +9,23 @@ export class SaveExcelService {
 
   constructor() { }
 
-    // Method to create and download an Excel file
-    generateExcelFile(processedText: string): void {
-      // Create a new workbook and a worksheet
-      const workbook = XLSX.utils.book_new();
-      const worksheetData = [['Processed Text'], [processedText]];  // Example data: a header and the processed text
-  
-      // Create the worksheet with the data
-      const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
-      
-      // Add the worksheet to the workbook
-      XLSX.utils.book_append_sheet(workbook, worksheet, 'Processed Data');
-  
-      // Generate the Excel file (a binary string)
-      const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-  
-      // Convert the binary string to a Blob and trigger the download
-      const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  // Method to create and download an Excel file with font styles
+  generateExcelFile(processedText: string): void {
+    const workbook = new Workbook();
+    const worksheet = workbook.addWorksheet('Processed Data');
+
+    // Set a row with font styling
+    worksheet.addRow(['Processed Text']);
+    const row = worksheet.addRow([processedText]);
+
+    row.font = {
+      name: 'Tagalog Doctrina 1593', // Set to the desired font, like Arial or Times New Roman
+    };
+
+    // Generate and download the Excel file
+    workbook.xlsx.writeBuffer().then((buffer) => {
+      const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       saveAs(blob, 'ProcessedText.xlsx');
-    }
+    });
+  }
 }
