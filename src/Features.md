@@ -1,15 +1,11 @@
-1- Ability to save
-    - Txt
-    - Excell
+1- Ask user if words are proper nouns and change if so 
 
-2- Produce Excel file that had unique words page
+2- Ask user if c sounds like s or k
 
-3- Ask user if words are proper nouns and change if so 
+3- Ask user if ch sounds like ch or k
 
-4- Ask user if c sounds like s or k
+4- Change sh to siy
 
-5- Ask user if ch sounds like ch or k
+5- Change ph to f
 
-6- Change sh to siy
-
-7- Update styles
+5- Update styles
