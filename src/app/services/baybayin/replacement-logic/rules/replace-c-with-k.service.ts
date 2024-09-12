@@ -7,8 +7,8 @@ export class ReplaceCWithKService {
 
   constructor() { }
 
-    // Method to replace 'c' with a capital 'k'
+    // Method to replace 'c' with a 'k'
     replaceCWithK(input: string): string {
-      return input.replace(/c/g, 'k').replace(/C/g, 'K');
+      return input.replace(/c/g, 'k');
   }
 }
