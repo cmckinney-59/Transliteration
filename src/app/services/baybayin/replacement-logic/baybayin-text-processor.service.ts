@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ConvertToLowercaseService } from './rules/convert-to-lowercase.service';
 import { ReplaceShWithSiyService } from './rules/replace-sh-with-siy.service';
 import { ReplacePhWithFService } from './rules/replace-ph-with-f.service';
+import { CapitalizeSecondConsecutiveVowelService } from './rules/capitalize-second-consecutive-vowel.service';
 import { RemoveDuplicateConsonantService } from './rules/remove-duplicate-consonant.service';
 import { ConvertNgAndMgaService } from './rules/convert-ng-and-mga.service';
 import { ReplaceNgWithCapitalNService } from './rules/replace-ng-with-capital-n.service';
@@ -21,6 +22,7 @@ export class BaybayinTextProcessorService {
     private convertToLowercaseService: ConvertToLowercaseService,
     private replaceShWithSiyService: ReplaceShWithSiyService,
     private replacePhWithFService: ReplacePhWithFService,
+    private capitalizeSecondConsecutiveVowelService: CapitalizeSecondConsecutiveVowelService,
     private removeDuplicateConsonantService: RemoveDuplicateConsonantService,
     private convertNgAndMgaService: ConvertNgAndMgaService,
     private replaceNgWithCapitalNService: ReplaceNgWithCapitalNService,
@@ -35,6 +37,7 @@ export class BaybayinTextProcessorService {
     let result = this.convertToLowercaseService.convertToLowercase(input);
     result = this.replaceShWithSiyService.replaceShWithSiy(result);
     result = this.replacePhWithFService.replacepPhWithF(result);
+    result = this.capitalizeSecondConsecutiveVowelService.capitalizeSubsequentVowels(result);
     result = this.removeDuplicateConsonantService.removeDuplicateConsonants(result);
     result = this.convertNgAndMgaService.replaceNgAndMga(result);
     result = this.replaceNgWithCapitalNService.replaceNgWithCapitalN(result);
