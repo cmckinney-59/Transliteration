@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { ConvertToLowercaseService } from './convert-to-lowercase.service';
-import { ConvertNgAndMgaService } from './convert-ng-and-mga.service';
-import { ReplaceNgWithCapitalNService } from './replace-ng-with-capital-n.service';
-import { AddPlusAfterConsonantService } from './add-plus-after-consonant.service';
-import { RemoveAAfterConsonantService } from '../../services/baybayin/remove-a-after-consonant.service';
-import { CapitalizeFirstVowelService } from './capitalize-first-vowel.service';
-import { RemoveDashService } from './remove-dash.service';
-import { ReplaceCWithKService } from './replace-c-with-k.service';
+import { ConvertToLowercaseService } from './rules/convert-to-lowercase.service';
+import { ReplaceShWithSiyService } from './rules/replace-sh-with-siy.service';
+import { ConvertNgAndMgaService } from './rules/convert-ng-and-mga.service';
+import { ReplaceNgWithCapitalNService } from './rules/replace-ng-with-capital-n.service';
+import { AddPlusAfterConsonantService } from './rules/add-plus-after-consonant.service';
+import { RemoveAAfterConsonantService } from './rules/remove-a-after-consonant.service';
+import { CapitalizeFirstVowelService } from './rules/capitalize-first-vowel.service';
+import { RemoveDashService } from './rules/remove-dash.service';
+import { ReplaceCWithKService } from './rules/replace-c-with-k.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class BaybayinTextProcessorService {
 
   constructor(
     private convertToLowercaseService: ConvertToLowercaseService,
+    private replaceShWithSiyService: ReplaceShWithSiyService,
     private convertNgAndMgaService: ConvertNgAndMgaService,
     private replaceNgWithCapitalNService: ReplaceNgWithCapitalNService,
     private addPlusAfterConsonantService: AddPlusAfterConsonantService,
@@ -27,6 +29,7 @@ export class BaybayinTextProcessorService {
 
   processBaybayinText(input: string): string {
     let result = this.convertToLowercaseService.convertToLowercase(input);
+    result = this.replaceShWithSiyService.replaceShWithSiy(result);
     result = this.convertNgAndMgaService.replaceNgAndMga(result);
     result = this.replaceNgWithCapitalNService.replaceNgWithCapitalN(result);
     result = this.addPlusAfterConsonantService.addPlusIfConsonant(result);

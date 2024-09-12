@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { SaveWordService } from '../../services/baybayin/save-word.service';
-import { SaveTextService } from '../../services/baybayin/save-text.service';
-import { SaveExcelService } from '../../services/baybayin/save-excel.service';
-import { BaybayinTextProcessorService } from '../../services/baybayin/baybayin-text-processor.service';
+import { SaveWordService } from '../../services/baybayin/save-file/save-word.service';
+import { SaveTextService } from '../../services/baybayin/save-file/save-text.service';
+import { SaveExcelService } from '../../services/baybayin/save-file/save-excel.service';
+import { BaybayinTextProcessorService } from '../../services/baybayin/replacement-logic/baybayin-text-processor.service';
 
 @Component({
   selector: 'app-baybayin-page',
