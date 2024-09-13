@@ -19,6 +19,7 @@ export class BaybayinPageComponent {
   // Variable to store user input
   userInput: string = '';
   processedText: string = '';
+  processedWordsMap: Map<string, string> = new Map(); // Map to store processed words
 
   constructor(
     private baybayinTextProcessorService: BaybayinTextProcessorService,
@@ -30,13 +31,29 @@ export class BaybayinPageComponent {
 
   // Method to handle the input and processing of "ch"
   async getCombinedOutput(): Promise<void> {
-    // Only process the text when the user finishes typing
-    if (this.userInput.trim().length > 0) {
-      // Process the "ch" replacement and keep the user input unchanged
-      this.processedText = await this.chHandlerService.processChInWord(this.userInput);
-      // Apply other transformations if needed
-      this.processedText = this.baybayinTextProcessorService.processBaybayinText(this.processedText);
+    const words = this.userInput.split(/\s+/); // Split input into words by spaces
+
+    const processedWords: string[] = [];
+    
+    for (let word of words) {
+      // Check if the word is already processed
+      if (this.processedWordsMap.has(word)) {
+        // If already processed, use the stored processed version
+        processedWords.push(this.processedWordsMap.get(word) as string);
+      } else {
+        // If not processed, process the word
+        const processedWord = await this.chHandlerService.processChInWord(word);
+        const finalProcessedWord = this.baybayinTextProcessorService.processBaybayinText(processedWord);
+        
+        // Store the processed word in the map
+        this.processedWordsMap.set(word, finalProcessedWord);
+        
+        processedWords.push(finalProcessedWord);
+      }
     }
+
+    // Join the processed words back into a single string
+    this.processedText = processedWords.join(' ');
   }
 
   // Method to copy the processed text to the clipboard
