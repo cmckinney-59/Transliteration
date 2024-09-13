@@ -6,6 +6,8 @@ import { SaveTextService } from '../../services/baybayin/save-file/save-text.ser
 import { SaveExcelService } from '../../services/baybayin/save-file/save-excel.service';
 import { BaybayinTextProcessorService } from '../../services/baybayin/replacement-logic/baybayin-text-processor.service';
 
+import { ChHandlerService } from '../../dialogs/ch-dialog/ch-handler.service';
+
 @Component({
   selector: 'app-baybayin-page',
   standalone: true,
@@ -22,14 +24,19 @@ export class BaybayinPageComponent {
     private baybayinTextProcessorService: BaybayinTextProcessorService,
     private saveWordService: SaveWordService,
     private saveTextService: SaveTextService,
-    private saveExcelService: SaveExcelService
+    private saveExcelService: SaveExcelService,
+    private chHandlerService: ChHandlerService
   ) {}
 
-  // Method to return the user input with both 'ng' and 'mga' replaced
-  getCombinedOutput(): string {
-    let result = this.baybayinTextProcessorService.processBaybayinText(this.userInput);
-    this.processedText = result;
-    return result
+  // Method to handle the input and processing of "ch"
+  async getCombinedOutput(): Promise<void> {
+    // Only process the text when the user finishes typing
+    if (this.userInput.trim().length > 0) {
+      // Process the "ch" replacement and keep the user input unchanged
+      this.processedText = await this.chHandlerService.processChInWord(this.userInput);
+      // Apply other transformations if needed
+      this.processedText = this.baybayinTextProcessorService.processBaybayinText(this.processedText);
+    }
   }
 
   // Method to copy the processed text to the clipboard
@@ -54,5 +61,10 @@ export class BaybayinPageComponent {
   // Call the service to generate and download the Excel file
   generateExcelFile(): void {
     this.saveExcelService.generateExcelFile(this.processedText);
+  }
+
+  async onWordFinished() {
+    // Trigger processing when user finishes typing a word (triggered by blur or space key)
+    await this.getCombinedOutput();
   }
 }

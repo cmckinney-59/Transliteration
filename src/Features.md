@@ -4,6 +4,4 @@
 - que sounds like que or k
 - proper noun
 
-2- Update 
-
-3- Move download to dropdown
+2- Stylize
