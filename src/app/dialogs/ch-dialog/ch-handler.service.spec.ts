@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ReplaceCWithKService } from './replace-c-with-k.service';
+import { ChHandlerService } from './ch-handler.service';
 
-describe('ReplaceCWithKService', () => {
-  let service: ReplaceCWithKService;
+describe('ChHandlerService', () => {
+  let service: ChHandlerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ReplaceCWithKService);
+    service = TestBed.inject(ChHandlerService);
   });
 
   it('should be created', () => {
