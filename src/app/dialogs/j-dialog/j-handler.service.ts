@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ChDialogComponent } from './ch-dialog.component';
+import { JDialogComponent } from './j-dialog.component';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ChHandlerService {
+export class JHandlerService {
   constructor(private dialog: MatDialog) {}
 
-  async processChInWord(word: string): Promise<string> {
-    if (word.toLowerCase().includes('ch')) {
-      const dialogRef = this.dialog.open(ChDialogComponent, {
+  async processJInWord(word: string): Promise<string> {
+    if (word.toLowerCase().includes('j')) {
+      const dialogRef = this.dialog.open(JDialogComponent, {
         data: { word }
       });
 
       // Wait for user selection (either 'tiy' or 'k')
       const result = await dialogRef.afterClosed().toPromise();
 
-      // Replace "ch" with the selected option
+      // Replace "j" with the selected option
       if (result) {
-        return word.replace(/ch/gi, result);
+        return word.replace(/j/gi, result);
       }
     }
     return word;
