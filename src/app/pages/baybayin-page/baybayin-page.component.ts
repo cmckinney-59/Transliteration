@@ -7,6 +7,7 @@ import { SaveExcelService } from '../../services/baybayin/save-file/save-excel.s
 import { BaybayinTextProcessorService } from '../../services/baybayin/replacement-logic/baybayin-text-processor.service';
 
 import { ChHandlerService } from '../../dialogs/ch-dialog/ch-handler.service';
+import { CHandlerService } from '../../dialogs/c-dialog/c-handler.service';
 
 @Component({
   selector: 'app-baybayin-page',
@@ -26,7 +27,8 @@ export class BaybayinPageComponent {
     private saveWordService: SaveWordService,
     private saveTextService: SaveTextService,
     private saveExcelService: SaveExcelService,
-    private chHandlerService: ChHandlerService
+    private chHandlerService: ChHandlerService,
+    private cHandlerService: CHandlerService
   ) {}
 
   // Method to handle the input and processing of "ch"
@@ -42,7 +44,7 @@ export class BaybayinPageComponent {
         processedWords.push(this.processedWordsMap.get(word) as string);
       } else {
         // If not processed, process the word
-        const processedWord = await this.chHandlerService.processChInWord(word);
+        const processedWord = await this.processWordWithDialogs(word);
         const finalProcessedWord = this.baybayinTextProcessorService.processBaybayinText(processedWord);
         
         // Store the processed word in the map
@@ -54,6 +56,12 @@ export class BaybayinPageComponent {
 
     // Join the processed words back into a single string
     this.processedText = processedWords.join(' ');
+  }
+
+  async processWordWithDialogs(word: string): Promise<string> {
+    let processedWord = await this.chHandlerService.processChInWord(word);
+    processedWord = await this.cHandlerService.processCInWord(processedWord);
+    return processedWord;
   }
 
   // Method to copy the processed text to the clipboard
