@@ -14,7 +14,7 @@ export class JHandlerService {
         data: { word }
       });
 
-      // Wait for user selection (either 'tiy' or 'k')
+      // Wait for user selection (either 'diy' or 'h')
       const result = await dialogRef.afterClosed().toPromise();
 
       // Replace "j" with the selected option
