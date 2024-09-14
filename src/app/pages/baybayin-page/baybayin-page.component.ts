@@ -8,6 +8,7 @@ import { BaybayinTextProcessorService } from '../../services/baybayin/replacemen
 
 import { ChHandlerService } from '../../dialogs/ch-dialog/ch-handler.service';
 import { CHandlerService } from '../../dialogs/c-dialog/c-handler.service';
+import { JHandlerService } from '../../dialogs/j-dialog/j-handler.service';
 
 @Component({
   selector: 'app-baybayin-page',
@@ -28,7 +29,8 @@ export class BaybayinPageComponent {
     private saveTextService: SaveTextService,
     private saveExcelService: SaveExcelService,
     private chHandlerService: ChHandlerService,
-    private cHandlerService: CHandlerService
+    private cHandlerService: CHandlerService,
+    private jHanlderService: JHandlerService
   ) {}
 
   // Method to handle the input and processing of "ch"
@@ -61,6 +63,7 @@ export class BaybayinPageComponent {
   async processWordWithDialogs(word: string): Promise<string> {
     let processedWord = await this.chHandlerService.processChInWord(word);
     processedWord = await this.cHandlerService.processCInWord(processedWord);
+    processedWord = await this.jHanlderService.processJInWord(processedWord);
     return processedWord;
   }
 
