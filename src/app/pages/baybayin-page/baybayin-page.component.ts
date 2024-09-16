@@ -10,6 +10,7 @@ import { ChHandlerService } from '../../dialogs/ch-dialog/ch-handler.service';
 import { CHandlerService } from '../../dialogs/c-dialog/c-handler.service';
 import { JHandlerService } from '../../dialogs/j-dialog/j-handler.service';
 import { QuHandlerService } from '../../dialogs/qu-dialog/qu-handler.service';
+import { ProperNounHandlerService } from '../../dialogs/proper-noun-dialog/proper-noun-handler.service';
 
 @Component({
   selector: 'app-baybayin-page',
@@ -32,7 +33,8 @@ export class BaybayinPageComponent {
     private chHandlerService: ChHandlerService,
     private cHandlerService: CHandlerService,
     private jHanlderService: JHandlerService,
-    private quHandlerService: QuHandlerService
+    private quHandlerService: QuHandlerService,
+    private properNounHandlerService: ProperNounHandlerService
   ) {}
 
   // Method to handle the input and processing of "ch"
@@ -63,7 +65,8 @@ export class BaybayinPageComponent {
   }
 
   async processWordWithDialogs(word: string): Promise<string> {
-    let processedWord = await this.chHandlerService.processChInWord(word);
+    let processedWord = await this.properNounHandlerService.processProperNoun(word);
+    processedWord = await this.chHandlerService.processChInWord(processedWord);
     processedWord = await this.cHandlerService.processCInWord(processedWord);
     processedWord = await this.jHanlderService.processJInWord(processedWord);
     processedWord = await this.quHandlerService.processQuInWord(processedWord);
