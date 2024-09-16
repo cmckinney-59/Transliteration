@@ -1,0 +1,14 @@
+<h2>Is "{{ data.word }}" a proper noun?</h2>
+<button (click)="onYes()">Yes</button>
+<button (click)="onNo()">No</button>
+
+<div *ngIf="data.wordIsProperNoun">
+  <h3>Is "{{ data.word }}" spelled phonetically?</h3>
+  <button (click)="onPhoneticYes()">Yes</button>
+  <button (click)="onPhoneticNo()">No</button>
+
+  <div *ngIf="!spelledPhonetically">
+    <label for="phoneticSpelling">Spell "{{ data.word }}" phonetically:</label>
+    <input id="phoneticSpelling" [(ngModel)]="phoneticSpelling" />
+  </div>
+</div>
