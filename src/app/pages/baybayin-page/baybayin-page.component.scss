@@ -1,86 +1,20 @@
 .baybayin-header {
   font-family: 'Baybayin', sans-serif;
   font-size: 2rem;
+  font-weight: bold;
   color: #333;
 }
 
-// Style for the output paragraph
 .baybayin-paragraph {
   font-family: 'Baybayin', sans-serif;
   font-size: 1.5rem;
   color: #333;
 }
 
-// Additional styling for the output box
 .baybayin-output {
   margin-top: 20px;
-}
-
-button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-// Dropdown styles
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.btn {
-  background-color: #4CAF50;
-  color: white;
-  width: 6.5rem;
-  margin-top: 10px;
-  margin-left: 10px;
-  padding: 8px 12px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.dropdown-content {
-  display: none;
-  width: 6.5rem;
-  font-size: 16px;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 100px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  left: 1;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
-
-/* Show the dropdown content when hovering over the .dropdown */
-.dropdown:hover .dropdown-content {
-  display: block; /* Shows the content when hovering */
+  margin-left: 20px;
+  font-family: 'Baybayin', sans-serif;
+  border: #333;
+  border-width: 100px;
 }
