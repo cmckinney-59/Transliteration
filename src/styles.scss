@@ -26,15 +26,15 @@ main {
 button {
   margin-top: 10px;
   padding: 8px 12px;
-  background-color: #083c5d;
-  color: white;
+  background-color: #EDF6FF;
+  color: #437FC7;
   border: none;
   cursor: pointer;
 }
 
 button:hover {
   background-color: white;
-  color: #083c5d;
+  color: #437FC7;
 }
 
 .sub-header {
@@ -45,14 +45,14 @@ body {
   margin: 1rem;
 }
 
-.dropdown {
+.page-dropdown {
   position: relative;
   display: inline-block;
 }
 
 .btn {
-  background-color: #083c5d;
-  color: white;
+  background-color: #EDF6FF;
+  color: #437FC7;
   width: 6.5rem;
   margin-top: 10px;
   padding: 8px 12px;
@@ -70,16 +70,15 @@ body {
   min-width: 100px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 10;
-  left: 0; /* Ensures it's aligned to the left */
-  margin-top: 10px;
   cursor: pointer;
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
+  color: #437FC7;
+  padding: 8px 12px;
   text-decoration: none;
   display: block;
+  text-align: center;
 }
 
 .dropdown-content a:hover {
@@ -92,5 +91,5 @@ body {
 
 .dropdown:hover .btn {
   background-color: white;
-  color: #083c5d;
+  color: #437FC7;
 }

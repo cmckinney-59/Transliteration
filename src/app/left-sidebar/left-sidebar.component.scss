@@ -1,23 +1,51 @@
 .left {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 130px;
-    height: 100%;
-    background-color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    padding-top: 50px;
-  }
-  
-  .left span {
+  position: fixed;
+  top: 100px; /* Adjust this value to match the height of your site-header */
+  left: 0;
+  width: 130px;
+  height: calc(100% - 100px); /* Make sure sidebar takes up the remaining height */
+  background-color:#EDF6FF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  padding-top: 10px;
+  z-index: 20;
+}
+ 
+ .left span {
     margin: 10px 0;
     text-decoration: none;
-    color: #000;
+    color: black;
   }
   
   .left span:hover {
-    color: #083c5d;
+    color: #437FC7;
+  }
+
+  .baybayin-symbol {
+    font-family: 'Baybayin';
+    padding-right: 10px;
+  }
+
+  .deseret-symbol {
+    font-family: 'Deseret';
+    padding-right: 10px;
+  }
+
+  .aurebesh-symbol {
+    font-family: 'Aurebesh';
+    padding-right: 10px;
+  }
+
+  .nav-item-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align to the start (left side) */
+  }
+  
+  .nav-item {
+    margin-bottom: 10px; /* Optional: Add space between items */
+    text-decoration: none; /* Removes underline from links */
   }

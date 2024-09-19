@@ -1,20 +1,30 @@
-.container {
-  display: flex;
-  justify-content: flex-end; /* Aligns content to the left */
-  align-items: center; /* Vertically centers the items */
+.site-header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  display: flex; /* Enable flexbox */
+  justify-content: space-between; /* Space between left and right sections */
+  align-items: center;
   font-size: 24px;
   margin-bottom: 10px;
   padding: 0 8px 5px 8px;
-  border-bottom: 2px solid #818285;
+  background-color: #437FC7;
   z-index: 30;
+  height: 100px;
 }
+
+  .logo {
+    height: 100px;
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+  }
 
   .right {
     display: flex;
     align-items: center;
-    margin-right: 25px;
-  }
-  
-  .right * {
-    margin-left: 25px;
+    margin-right: 25px; /* Space from the right edge of the screen */
   }
