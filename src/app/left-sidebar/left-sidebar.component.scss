@@ -4,7 +4,7 @@
   left: 0;
   width: 130px;
   height: calc(100% - 100px); /* Make sure sidebar takes up the remaining height */
-  background-color: #707793;
+  background-color: lightgrey;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,11 +16,11 @@
  .left span {
     margin: 10px 0;
     text-decoration: none;
-    color: #000;
+    color: black;
   }
   
   .left span:hover {
-    color: #083c5d;
+    color: #3BBA9C;
   }
 
   .baybayin-symbol {
