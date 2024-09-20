@@ -8,10 +8,10 @@ import { JDialogComponent } from './j-dialog.component';
 export class JHandlerService {
   constructor(private dialog: MatDialog) {}
 
-  async processJInWord(word: string): Promise<string> {
+  async processJInWord(word: string, currentIndex: number, totalWords: number): Promise<string> {
     if (word.toLowerCase().includes('j')) {
       const dialogRef = this.dialog.open(JDialogComponent, {
-        data: { word }
+        data: { word, currentIndex, totalWords }
       });
 
       // Wait for user selection (either 'diy' or 'h')

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { SaveFileService } from './services/baybayin/save-file/save-file.service';
-import { BaybayinTextProcessorService } from './services/baybayin/replacement-logic/baybayin-text-processor.service';
+import { SaveFileService } from './services/save-file/baybayin-save-file.service';
+import { BaybayinTextProcessorService } from './services/replacement-logic/baybayin-text-processor.service';
 import { BaybayinDialogProcessorService } from './dialogs/baybayin-dialog-processor.service';
 import { BaybayinDescriptionComponent } from './description/baybayin-description.component';
 
@@ -14,10 +14,11 @@ import { BaybayinDescriptionComponent } from './description/baybayin-description
   styleUrl: './baybayin-page.component.scss'
 })
 export class BaybayinPageComponent {
-  // Variable to store user input
-  userInput: string = '';
+  userInput: string = ''; // Variable to store user input
   processedText: string = '';
   processedWordsMap: Map<string, string> = new Map(); // Map to store processed words
+  totalWordsToReview: number = 0;
+  currentWordIndex: number = 0;
 
   constructor(
     private baybayinTextProcessorService: BaybayinTextProcessorService,
@@ -27,28 +28,26 @@ export class BaybayinPageComponent {
 
   // Method to handle the input and processing of "ch"
   async getCombinedOutput(): Promise<void> {
-    const words = this.userInput.split(/\s+/); // Split input into words by spaces
+    const words = this.userInput.split(/\s+/);
+
+    this.totalWordsToReview = words.length;  // Total words to review
+    this.currentWordIndex = 0;  // Reset the index
 
     const processedWords: string[] = [];
-    
+
     for (let word of words) {
-      // Check if the word is already processed
+      this.currentWordIndex++;
+
       if (this.processedWordsMap.has(word)) {
-        // If already processed, use the stored processed version
         processedWords.push(this.processedWordsMap.get(word) as string);
       } else {
-        // If not processed, process the word
-        const processedWord = await this.baybainDialogProcessorService.processBaybayinDialog(word);
+        const processedWord = await this.baybainDialogProcessorService.processBaybayinDialog(word, this.currentWordIndex, this.totalWordsToReview); 
         const finalProcessedWord = this.baybayinTextProcessorService.processBaybayinText(processedWord);
-        
-        // Store the processed word in the map
+
         this.processedWordsMap.set(word, finalProcessedWord);
-        
         processedWords.push(finalProcessedWord);
       }
     }
-
-    // Join the processed words back into a single string
     this.processedText = processedWords.join(' ');
   }
 

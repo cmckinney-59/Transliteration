@@ -8,7 +8,9 @@
 
 - Replace numbers and punctuation with a different font
 
-- Fix space bug
+- Fix space dialog bug
+
+- Fix header
 
 Stylize
 - maybe put the tranliterator in a box by itself
