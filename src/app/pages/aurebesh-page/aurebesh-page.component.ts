@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AurebeshDescriptionComponent } from "./aurebesh-description/aurebesh-description.component";
+import { AurebeshDescriptionComponent } from "./description/aurebesh-description.component";
 
 @Component({
   selector: 'app-aurebesh-page',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DeseretDescriptionComponent } from "./deseret-description/deseret-description.component";
+import { DeseretDescriptionComponent } from "./description/deseret-description.component";
 
 @Component({
   selector: 'app-deseret-page',
