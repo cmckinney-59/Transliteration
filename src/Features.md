@@ -1,12 +1,18 @@
-1- move description to a separate component
+- reorganize files
 
-2- combine dialog processor
+- combine save service
 
-3- Make app not standalone
+- Add # to dialog processor
 
-4- Replace numbers and punctuation with a different font
+- Make it so dialog processor doesn't clos
 
-5- Fix space bug
+- Make it so dialog processor doesn't ask the same word twice
+
+- Make app not standalone
+
+- Replace numbers and punctuation with a different font
+
+- Fix space bug
 
 Stylize
 - maybe put the tranliterator in a box by itself

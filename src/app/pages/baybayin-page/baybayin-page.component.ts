@@ -5,13 +5,7 @@ import { SaveWordService } from '../../services/baybayin/save-file/save-word.ser
 import { SaveTextService } from '../../services/baybayin/save-file/save-text.service';
 import { SaveExcelService } from '../../services/baybayin/save-file/save-excel.service';
 import { BaybayinTextProcessorService } from '../../services/baybayin/replacement-logic/baybayin-text-processor.service';
-
-import { ChHandlerService } from '../../dialogs/ch-dialog/ch-handler.service';
-import { CHandlerService } from '../../dialogs/c-dialog/c-handler.service';
-import { JHandlerService } from '../../dialogs/j-dialog/j-handler.service';
-import { QuHandlerService } from '../../dialogs/qu-dialog/qu-handler.service';
-import { ProperNounHandlerService } from '../../dialogs/proper-noun-dialog/proper-noun-handler.service';
-
+import { BaybayinDialogProcessorService } from '../../dialogs/baybayin-dialog-processor.service';
 import { BaybayinDescriptionComponent } from './baybayin-description/baybayin-description.component';
 
 @Component({
@@ -32,11 +26,7 @@ export class BaybayinPageComponent {
     private saveWordService: SaveWordService,
     private saveTextService: SaveTextService,
     private saveExcelService: SaveExcelService,
-    private chHandlerService: ChHandlerService,
-    private cHandlerService: CHandlerService,
-    private jHanlderService: JHandlerService,
-    private quHandlerService: QuHandlerService,
-    private properNounHandlerService: ProperNounHandlerService
+    private baybainDialogProcessorService: BaybayinDialogProcessorService
   ) {}
 
   // Method to handle the input and processing of "ch"
@@ -52,7 +42,7 @@ export class BaybayinPageComponent {
         processedWords.push(this.processedWordsMap.get(word) as string);
       } else {
         // If not processed, process the word
-        const processedWord = await this.processWordWithDialogs(word);
+        const processedWord = await this.baybainDialogProcessorService.processBaybayinDialog(word);
         const finalProcessedWord = this.baybayinTextProcessorService.processBaybayinText(processedWord);
         
         // Store the processed word in the map
@@ -64,15 +54,6 @@ export class BaybayinPageComponent {
 
     // Join the processed words back into a single string
     this.processedText = processedWords.join(' ');
-  }
-
-  async processWordWithDialogs(word: string): Promise<string> {
-    let processedWord = await this.properNounHandlerService.processProperNoun(word);
-    processedWord = await this.chHandlerService.processChInWord(processedWord);
-    processedWord = await this.cHandlerService.processCInWord(processedWord);
-    processedWord = await this.jHanlderService.processJInWord(processedWord);
-    processedWord = await this.quHandlerService.processQuInWord(processedWord);
-    return processedWord;
   }
 
   // Method to copy the processed text to the clipboard
