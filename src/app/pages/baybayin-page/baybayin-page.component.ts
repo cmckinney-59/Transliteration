@@ -12,10 +12,12 @@ import { JHandlerService } from '../../dialogs/j-dialog/j-handler.service';
 import { QuHandlerService } from '../../dialogs/qu-dialog/qu-handler.service';
 import { ProperNounHandlerService } from '../../dialogs/proper-noun-dialog/proper-noun-handler.service';
 
+import { BaybayinDescriptionComponent } from './baybayin-description/baybayin-description.component';
+
 @Component({
   selector: 'app-baybayin-page',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, BaybayinDescriptionComponent],
   templateUrl: './baybayin-page.component.html',
   styleUrl: './baybayin-page.component.scss'
 })

@@ -6,6 +6,8 @@
 
 4- Replace numbers and punctuation with a different font
 
+5- Fix space bug
+
 Stylize
 - maybe put the tranliterator in a box by itself
 
