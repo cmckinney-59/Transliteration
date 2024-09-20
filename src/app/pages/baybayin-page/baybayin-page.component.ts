@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { SaveWordService } from './services/baybayin/save-file/save-word.service';
-import { SaveTextService } from './services/baybayin/save-file/save-text.service';
-import { SaveExcelService } from './services/baybayin/save-file/save-excel.service';
+import { SaveFileService } from './services/baybayin/save-file/save-file.service';
 import { BaybayinTextProcessorService } from './services/baybayin/replacement-logic/baybayin-text-processor.service';
 import { BaybayinDialogProcessorService } from './dialogs/baybayin-dialog-processor.service';
 import { BaybayinDescriptionComponent } from './description/baybayin-description.component';
@@ -23,9 +21,7 @@ export class BaybayinPageComponent {
 
   constructor(
     private baybayinTextProcessorService: BaybayinTextProcessorService,
-    private saveWordService: SaveWordService,
-    private saveTextService: SaveTextService,
-    private saveExcelService: SaveExcelService,
+    private saveFileService: SaveFileService,
     private baybainDialogProcessorService: BaybayinDialogProcessorService
   ) {}
 
@@ -67,17 +63,17 @@ export class BaybayinPageComponent {
 
   // Call the service to generate the Word document
   generateWordDocument(): void {
-    this.saveWordService.generateWordDocument(this.processedText);
+    this.saveFileService.generateWordDocument(this.processedText)
   }
 
   // Call the service to generate and download the .txt file
   generateTextFile(): void {
-    this.saveTextService.generateTextFile(this.processedText);
+    this.saveFileService.generateTextFile(this.processedText)
   }
 
   // Call the service to generate and download the Excel file
   generateExcelFile(): void {
-    this.saveExcelService.generateExcelFile(this.processedText);
+    this.saveFileService.generateExcelFile(this.processedText)
   }
 
   async onWordFinished() {
