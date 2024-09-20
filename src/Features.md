@@ -1,22 +1,15 @@
-1- Ask user if...
-- proper noun
-- combine dialog processor
-- move description to a separate component
+1- move description to a separate component
 
-2- Replace th with t
+2- combine dialog processor
 
-3- Replace double consonants
+3- Make app not standalone
 
-4- Make app not standalone
+4- Replace numbers and punctuation with a different font
 
-5- Replace numbers and punctuation with a different font
-
-6- Stylize
-- button size
+Stylize
 - maybe put the tranliterator in a box by itself
 
-Sydney
-- Change headers
-- Not white
-    - Description is different color
-    - Translitoration section is different color
+    - Sydney
+    - Not white
+        - Description is different color
+        - Translitoration section is different color

@@ -18,8 +18,43 @@
   font-family: 'Baybayin', sans-serif;
   border: #333;
   border-width: 100px;
+  border: 2px solid #000; /* Creates the box around the output */
+  padding: 15px;          /* Adds padding inside the box */
+  width: 100%;            /* Extends the box to the full width of the screen */
+  box-sizing: border-box;  /* Ensures padding is included within the width */
+  margin-top: 20px;        /* Adds spacing above the box */
+  min-height: 100px;       /* Ensures there's some initial height, adjusts as text grows */
+  background-color: #f9f9f9; /* Optional: Adds a background color */
 }
 
 .dropdown-content a {
   font: optional;
+}
+
+h2 {
+  font-size: 25px; /* Adjust the size as needed */
+}
+
+.transliterated-header {
+  display: flex;
+  align-items: center; /* Center vertically */
+  gap: 10px; /* Optional: space between the items */
+}
+
+.transliterated-header h2 {
+  margin: 0; /* Remove any margin from h2 */
+}
+
+.btn {
+  margin-left: 10px; /* Space between h2 and buttons */
+}
+
+.dropdown {
+  margin-left: 10px;
+}
+
+.dropdown-content a {
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
 }
