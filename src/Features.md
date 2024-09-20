@@ -1,5 +1,3 @@
-- Add # to dialog processor
-
 - Make it so dialog processor doesn't close
 
 - Make it so dialog processor doesn't ask the same word twice
@@ -8,7 +6,9 @@
 
 - Replace numbers and punctuation with a different font
 
-- Fix space bug
+- Fix space dialog bug
+
+- Fix header
 
 Stylize
 - maybe put the tranliterator in a box by itself

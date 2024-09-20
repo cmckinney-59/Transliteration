@@ -1,4 +1,5 @@
 <h2>Is "{{ data.word }}" a proper noun?</h2>
+<p>Reviewing {{ data.currentIndex }} of {{ data.totalWords }}</p>
 <button *ngIf="isProperNoun === null" (click)="onProperNounYes()">Yes</button>
 <button *ngIf="isProperNoun === null" (click)="onProperNounNo()">No</button>
 
