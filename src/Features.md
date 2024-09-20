@@ -1,8 +1,6 @@
-- combine save service
-
 - Add # to dialog processor
 
-- Make it so dialog processor doesn't clos
+- Make it so dialog processor doesn't close
 
 - Make it so dialog processor doesn't ask the same word twice
 
