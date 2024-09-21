@@ -4,9 +4,9 @@
 
 - Make app not standalone
 
-- Replace numbers and punctuation with a different font
-
 - Fix space dialog bug
+
+- Replace numbers and punctuation with a different font
 
 - Fix header
 

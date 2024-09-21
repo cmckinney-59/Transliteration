@@ -33,7 +33,7 @@ export class BaybayinPageComponent {
     this.totalWordsToReview = words.length;  // Total words to review
     this.currentWordIndex = 0;  // Reset the index
 
-    const processedWords: string[] = [];
+    const processedWords: string[] = []; // Instanciates an array of all of the processed words
 
     for (let word of words) {
       this.currentWordIndex++;
