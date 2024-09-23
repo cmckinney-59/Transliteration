@@ -8,10 +8,10 @@ import { ChDialogComponent } from './ch-dialog.component';
 export class ChHandlerService {
   constructor(private dialog: MatDialog) {}
 
-  async processChInWord(word: string, currentIndex: number, totalWords: number): Promise<string> {
+  async processChInWord(word: string): Promise<string> {
     if (word.toLowerCase().includes('ch')) {
       const dialogRef = this.dialog.open(ChDialogComponent, {
-        data: { word, currentIndex, totalWords }
+        data: { word }
       });
 
       // Wait for user selection (either 'tiy' or 'k')

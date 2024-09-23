@@ -8,10 +8,10 @@ import { QuDialogComponent } from './qu-dialog.component';
 export class QuHandlerService {
   constructor(private dialog: MatDialog) {}
 
-  async processQuInWord(word: string, currentIndex: number, totalWords: number): Promise<string> {
+  async processQuInWord(word: string): Promise<string> {
     if (word.toLowerCase().includes('qu')) {
       const dialogRef = this.dialog.open(QuDialogComponent, {
-        data: { word, currentIndex, totalWords }
+        data: { word }
       });
 
       // Wait for user selection (either 'kuw' or 'k')

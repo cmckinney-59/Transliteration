@@ -1,54 +1,58 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 import { SaveFileService } from './services/save-file/baybayin-save-file.service';
 import { BaybayinTextProcessorService } from './services/replacement-logic/baybayin-text-processor.service';
 import { BaybayinDialogProcessorService } from './dialogs/baybayin-dialog-processor.service';
 import { BaybayinDescriptionComponent } from './description/baybayin-description.component';
+import { WordReviewDialogComponent } from './dialogs/word-review-dialog/word-review-dialog.component';
 
 @Component({
   selector: 'app-baybayin-page',
   standalone: true,
   imports: [FormsModule, BaybayinDescriptionComponent],
   templateUrl: './baybayin-page.component.html',
-  styleUrl: './baybayin-page.component.scss'
+  styleUrls: ['./baybayin-page.component.scss']
 })
 export class BaybayinPageComponent {
-  userInput: string = ''; // Variable to store user input
+  userInput: string = ''; 
   processedText: string = '';
-  processedWordsMap: Map<string, string> = new Map(); // Map to store processed words
-  totalWordsToReview: number = 0;
-  currentWordIndex: number = 0;
+  processedWordsMap: Map<string, string> = new Map(); 
+  wordsToProcess: string[] = [];
 
   constructor(
     private baybayinTextProcessorService: BaybayinTextProcessorService,
     private saveFileService: SaveFileService,
-    private baybainDialogProcessorService: BaybayinDialogProcessorService
+    private baybainDialogProcessorService: BaybayinDialogProcessorService,
+    private dialog: MatDialog
   ) {}
 
-  // Method to handle the input and processing of "ch"
+  // Method to handle the input and processing
   async getCombinedOutput(): Promise<void> {
-    const words = this.userInput.split(/\s+/);
+    this.wordsToProcess = this.userInput.split(/\s+/); 
 
-    this.totalWordsToReview = words.length;  // Total words to review
-    this.currentWordIndex = 0;  // Reset the index
+    const processedWords: string[] = []; // Instantiate an array of all the processed words
 
-    const processedWords: string[] = []; // Instanciates an array of all of the processed words
+    // Open the dialog to process multiple words
+    this.openReviewDialog();
+  }
 
-    for (let word of words) {
-      this.currentWordIndex++;
-
-      if (this.processedWordsMap.has(word)) {
-        processedWords.push(this.processedWordsMap.get(word) as string);
-      } else {
-        const processedWord = await this.baybainDialogProcessorService.processBaybayinDialog(word, this.currentWordIndex, this.totalWordsToReview); 
-        const finalProcessedWord = this.baybayinTextProcessorService.processBaybayinText(processedWord);
-
-        this.processedWordsMap.set(word, finalProcessedWord);
-        processedWords.push(finalProcessedWord);
+  // Open dialog for reviewing words
+  openReviewDialog(): void {
+    const dialogRef = this.dialog.open(WordReviewDialogComponent, {
+      data: { 
+        words: this.wordsToProcess, 
+        processedWordsMap: this.processedWordsMap 
       }
-    }
-    this.processedText = processedWords.join(' ');
+    });
+
+    dialogRef.afterClosed().subscribe((processedWordsMap) => {
+      if (processedWordsMap) {
+        this.processedWordsMap = processedWordsMap;
+        this.processedText = Array.from(processedWordsMap.values()).join(' ');
+      }
+    });
   }
 
   // Method to copy the processed text to the clipboard
@@ -62,21 +66,20 @@ export class BaybayinPageComponent {
 
   // Call the service to generate the Word document
   generateWordDocument(): void {
-    this.saveFileService.generateWordDocument(this.processedText)
+    this.saveFileService.generateWordDocument(this.processedText);
   }
 
   // Call the service to generate and download the .txt file
   generateTextFile(): void {
-    this.saveFileService.generateTextFile(this.processedText)
+    this.saveFileService.generateTextFile(this.processedText);
   }
 
   // Call the service to generate and download the Excel file
   generateExcelFile(): void {
-    this.saveFileService.generateExcelFile(this.processedText)
+    this.saveFileService.generateExcelFile(this.processedText);
   }
 
   async onWordFinished() {
-    // Trigger processing when user finishes typing a word (triggered by blur or space key)
     await this.getCombinedOutput();
   }
 }
