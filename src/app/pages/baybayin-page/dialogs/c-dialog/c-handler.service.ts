@@ -8,10 +8,10 @@ import { CDialogComponent } from './c-dialog.component';
 export class CHandlerService {
   constructor(private dialog: MatDialog) {}
 
-  async processCInWord(word: string, currentIndex: number, totalWords: number): Promise<string> {
+  async processCInWord(word: string): Promise<string> {
     if (word.toLowerCase().includes('c')) {
       const dialogRef = this.dialog.open(CDialogComponent, {
-        data: { word, currentIndex, totalWords }
+        data: { word }
       });
   
       const result = await dialogRef.afterClosed().toPromise();

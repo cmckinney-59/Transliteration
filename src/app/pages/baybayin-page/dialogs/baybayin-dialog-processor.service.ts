@@ -19,12 +19,12 @@ export class BaybayinDialogProcessorService {
     private properNounHandlerService: ProperNounHandlerService
   ) { }
 
-  async processBaybayinDialog(word: string, currentIndex: number, totalWords: number): Promise<string> {
-    let processedWord = await this.properNounHandlerService.processProperNoun(word, currentIndex, totalWords);
-    processedWord = await this.chHandlerService.processChInWord(processedWord, currentIndex, totalWords);
-    processedWord = await this.cHandlerService.processCInWord(processedWord, currentIndex, totalWords);
-    processedWord = await this.jHanlderService.processJInWord(processedWord, currentIndex, totalWords);
-    processedWord = await this.quHandlerService.processQuInWord(processedWord, currentIndex, totalWords);
+  async processBaybayinDialog(word: string): Promise<string> {
+    let processedWord = await this.properNounHandlerService.processProperNoun(word);
+    processedWord = await this.chHandlerService.processChInWord(processedWord);
+    processedWord = await this.cHandlerService.processCInWord(processedWord);
+    processedWord = await this.jHanlderService.processJInWord(processedWord);
+    processedWord = await this.quHandlerService.processQuInWord(processedWord);
     return processedWord;
   }
 }

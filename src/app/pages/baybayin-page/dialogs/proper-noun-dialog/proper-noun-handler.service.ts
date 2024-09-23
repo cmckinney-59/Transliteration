@@ -8,11 +8,11 @@ import { ProperNounDialogComponent } from './proper-noun-dialog.component';
 export class ProperNounHandlerService {
   constructor(private dialog: MatDialog) {}
 
-  async processProperNoun(word: string, currentIndex: number, totalWords: number): Promise<string> {
+  async processProperNoun(word: string): Promise<string> {
     // Only open dialog if the first letter is uppercase (i.e., a potential proper noun)
     if (word.charAt(0) === word.charAt(0).toUpperCase()) {
       const dialogRef = this.dialog.open(ProperNounDialogComponent, {
-        data: { word, currentIndex, totalWords },
+        data: { word },
       });
 
       const result = await dialogRef.afterClosed().toPromise();

@@ -1,0 +1,6 @@
+<h2>Review Word {{ currentWordIndex + 1 }} of {{ totalWords }}</h2>
+<p>Does the "{{ words[currentWordIndex] }}" sound like "s" or "k"?</p>
+
+<button (click)="nextWord()">Next</button>
+<button (click)="previousWord()" [disabled]="currentWordIndex === 0">Previous</button>
+<button (click)="finishReview()" *ngIf="currentWordIndex === totalWords - 1">Finish</button>
