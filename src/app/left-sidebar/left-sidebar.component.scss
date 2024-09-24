@@ -1,51 +1,56 @@
 .left {
-  position: fixed;
-  top: 100px; /* Adjust this value to match the height of your site-header */
-  left: 0;
-  width: 130px;
-  height: calc(100% - 100px); /* Make sure sidebar takes up the remaining height */
-  background-color:#EDF6FF;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  padding-top: 10px;
-  z-index: 20;
+  position: fixed;                 /* The Element will remain visible if the user scrolls */
+  top: 100px;                      /* This is how far from the top the sidebar will start. As of now it starts just below the header.*/
+  left: 0;                         /* This element ensures the left navbar is in the most left position */
+  height: calc(100% - 100px);      /* This ensure's the side nav bar goes from the top (100px) and 100% of the rest of the page (all the way down to the bottom) */
+  background-color:#EDF6FF;      /* Sets the color of the side bar */ 
+  display: flex;                   /* Turns the display into a flexbox (allows for flexible layouts) */ 
+  flex-direction: column;          /* Stacks the child elements vertically in a column */
+  align-items: center;             /* Children items are aligned in the center of the left element */
+  z-index: 20;                     /* This makes sure that the side bar is always seen in front of elements that are less that level 20 on the z-axis */
 }
  
- .left span {
-    margin: 10px 0;
-    text-decoration: none;
-    color: black;
+ .left span {                      /* Targets all 'span' elements within the 'left' element */
+    margin: 10px 0;                /* Sets the margins above and below to 10px with the right and left to 0px */
+    text-decoration: none;         /* Removes all text decoration from element (If this is not set to none it will by default be underlined */
+    color: #437FC7;              /* Makes the text color light blue (They are hyperlinks so by default they would be blue or purple) */
   }
   
-  .left span:hover {
-    color: #437FC7;
+  .left span:hover {               /* Targets all span elements in Left when mouse hovers over them */
+    color: #437FC7;              /* Changes the color of the span text when hovered over */
   }
 
-  .baybayin-symbol {
-    font-family: 'Baybayin';
-    padding-right: 10px;
+  .baybayin-symbol {               /* Targets the baybayin symbol on the left side of the nav bar items */
+    font-family: 'Baybayin';       /* Sets the font to the custom font 'Baybayin' found in the styles.scss file */
+    padding-right: 10px;           /* Gives 10px space between the baybayin symbol and the word 'Baybayin' */
   }
 
-  .deseret-symbol {
-    font-family: 'Deseret';
-    padding-right: 10px;
+  .deseret-symbol {                /* Targets the deseret symbol on the left side of the nav bar items */
+    font-family: 'Deseret';        /* Sets the font to the custom font 'Deseret' found in the styles.scss file */
+    padding-right: 10px;           /* Gives 10px space between the deseret symbol and the word 'Deseret' */
   }
 
-  .aurebesh-symbol {
-    font-family: 'Aurebesh';
-    padding-right: 10px;
+  .aurebesh-symbol {               /* Targets the aurebesh symbol on the left side of the nav bar items */
+    font-family: 'Aurebesh';       /* Sets the font to the custom font 'Aurebesh' found in the styles.scss file */
+    padding-right: 10px;           /* Gives 10px space between the aurebesh symbol and the word 'Aurebesh' */
   }
 
-  .nav-item-container {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align to the start (left side) */
+  .nav-item-container {            /* Houses all of the navigation buttons to the various transliteration pages */
+    margin-top: 20px;              /* Adds a 20px space between the top of the nav bar and the first item */
+    display: flex;                 /* Turns the display into a flexbox (allows for flexible layouts) */
+    flex-direction: column;        /* Stack items (symbol word pair) vertically */
+    align-items: flex-start;       /* Align to the start (left side) */
   }
   
   .nav-item {
-    margin-bottom: 10px; /* Optional: Add space between items */
-    text-decoration: none; /* Removes underline from links */
+    width: 100%;                   /* Takes up full width of the container */
+    padding: 10px 20px 10px 20px;  /* Adds padding inside the nav item in this order: Top(10) Right(20) Bottom(10) Left(20) */
+    text-decoration: none;         /* Removes underline from links */
+    background-color: transparent; /* Sets default background color to transparent */
+    color: black;                /* Sets default text color to black */
+    margin-bottom: 10px;           /* Add space between items from the bottom */
+  }
+
+  .nav-item:hover {
+    background-color: white;  /* When the nav item is hovered over it changes the background color to white */
   }
