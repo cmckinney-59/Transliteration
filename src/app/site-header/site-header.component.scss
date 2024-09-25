@@ -1,30 +1,29 @@
 .site-header {
-  top: 0;
-  left: 0;
-  width: 100%;
-  position: fixed;
-  display: flex; /* Enable flexbox */
+  top: 0;                         /* Ensures the header reaches the absolute top of the browser window */
+  left: 0;                        /* Ensures the header reaches the absolute left of the browser window */
+  width: 100%;                    /* Ensures the header stretches across the full length of the screen */
+  position: fixed;                /* The Element will remain visible if the user scrolls */
+  display: flex;                  /* Turns the display into a flexbox (allows for flexible layouts) */
   justify-content: space-between; /* Space between left and right sections */
-  align-items: center;
-  font-size: 24px;
-  margin-bottom: 10px;
-  padding: 0 8px 5px 8px;
-  background-color: #437FC7;
-  z-index: 30;
-  height: 100px;
+  align-items: center;            /* Children items are aligned in the center HORIZONTALLY of the header element */
+  font-size: 24px;                /* Sets the font size of all font withing the header element */
+  padding: 0 8px 5px 8px;         /* Sets the padding within the header element to the following: Top(0) Right(8) Bottom(5) Left(8) */
+  background-color: #437FC7;    /* Sets the backround color of the header to a navy blue */
+  z-index: 30;                    /* Ensures the header falls in front of every other element on the screen */
+  height: 100px;                  /* Sets the height of the header */
 }
 
-  .logo {
-    height: 100px;
+  .left {                         /* Houses the styling for the left side of the header (currently only the logo is here) */
+    display: flex;                /* Turns the display into a flexbox (allows for flexible layouts) */
+    align-items: center;          /*  */
   }
 
-  .left {
-    display: flex;
-    align-items: center;
+  .logo {                         /* Houses the styling logic for the logo in the header element */
+    height: 100px;                /* Sets the height of the logo */
   }
 
-  .right {
-    display: flex;
-    align-items: center;
-    margin-right: 25px; /* Space from the right edge of the screen */
+  .right {                        /* Houses the styling for the right side of the header (currently only the Menu button is here) */
+    display: flex;                /* Turns the display into a flexbox (allows for flexible layouts) */
+    align-items: center;          /* Children items are aligned in the center HORIZONTALLY of the header element */
+    margin-right: 25px;           /* Space from the right edge of the screen */
   }
