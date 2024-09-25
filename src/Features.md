@@ -12,6 +12,7 @@
 
 Stylize
 - maybe put the tranliterator in a box by itself
+- maybe make page headers fixed
 
     - Sydney
     - Not white
