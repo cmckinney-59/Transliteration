@@ -10,6 +10,8 @@
 
 - Fix header
 
+- Name all 'processing' methods to 'transliterate'
+
 Stylize
 - maybe put the tranliterator in a box by itself
 - maybe make page headers fixed
