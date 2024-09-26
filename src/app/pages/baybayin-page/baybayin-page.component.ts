@@ -46,15 +46,13 @@ export class BaybayinPageComponent {
   //------ Variables ------//
 
   // Variables are 'buckets' for data to be housed during runtime
-  // Declares the variable 'userInput', sets the variable to type 'string' (characters), sets the variable to an empty string ''
+  // Declares the variables 'userInput' and 'processedText', sets the variable to type 'string' (characters), sets the variable to an empty string ''
   userInput: string = '';
-  // Declares the variable 'processedText', sets the variable to type 'string' (characters), sets the variable to an empty string ''
   processedText: string = '';
   // Declares the variable 'processedWordsMap', sets the variable to type Map (a built in JS/TS object that stores key value pairs), sets the values to string and string '<string, string>' and instanciates a new empty 'Map' object with new Map()
   processedWordsMap: Map<string, string> = new Map();
-  // Declares the variable 'allWords', sets the variable to type string array, sets the variable to an empty array
+  // Declares the variable 'allWords' and 'wordsToProcess', sets the variable to type string array, sets the variable to an empty array
   allWords: string[] = [];
-  // Declares the variable 'processedWordsMap', sets the variable to type string array, sets the variable to an empty array
   wordsToProcess: string[] = [];
 
   //------ Constructor ------//
@@ -71,18 +69,21 @@ export class BaybayinPageComponent {
     private dialog: MatDialog
   ) {}
 
-  // Method that handles the input and transliterating (processing) of text, async means it can be ran simultaneously with other methods, the empty () means the method doesn't take any parameters, Promise means it will wait for a responce, and void means the method doesn't return a value.
-  async getCombinedOutput(): Promise<void> {
-    // Instanciates a variable of type 'wordsToProcess'
+// Method that handles the submit button click and opens the review dialog
+onSubmit(): void {
+  // Ensure that the userInput is processed before opening the review dialog
+  if (this.userInput.trim().length > 0) {
+    // Splits the user input into words for processing
     this.allWords = this.userInput.split(/\s+/);
-    this.wordsToProcess = this.userInput.split(/\s+/); 
+    this.wordsToProcess = [...this.allWords];
 
-    // Instantiate an array of all the processed words
-    const processedWords: string[] = [];
-
-    // Open the dialog to process multiple words
+    // Open the word review dialog
     this.openReviewDialog();
+  } else {
+    // Display an alert or handle cases where input is empty
+    alert('Please enter text before submitting.');
   }
+}
 
   // Open dialog for reviewing words, method takes no paramenters hence the '()', and doesn't return anything hence the 'void'
   openReviewDialog(): void {
@@ -143,6 +144,6 @@ export class BaybayinPageComponent {
   // An async (can handle operations that take time to complete) method that waits for the transliteration process to complete then displays the output
   async onWordFinished() {
     // waits for the transliteration process to complete then displays the output
-    await this.getCombinedOutput();
+    await this.onSubmit();
   }
 }
