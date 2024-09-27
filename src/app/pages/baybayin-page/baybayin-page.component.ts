@@ -3,9 +3,8 @@
 // All of the angular imports
 // Imports component decorator from core used for all basic functions of components. Component type script files define how components behave.
 import { Component } from '@angular/core';
-// Imports FormsModule from forms which houses tools to create forms components
+// Imports FormsModule and MatDialog from forms which houses tools to create forms components
 import { FormsModule } from '@angular/forms';
-// Imports MatDialog from forms which houses tools to create dialog components
 import { MatDialog } from '@angular/material/dialog';
 
 // All of the custom imports (files I made)
@@ -19,6 +18,7 @@ import { BaybayinDialogProcessorService } from './dialogs/baybayin-dialog-proces
 import { BaybayinDescriptionComponent } from './description/baybayin-description.component';
 // Imports the WordReviewDialogComponent which houses tools for a dialog component that handles all of the questions to ask user about proper nouns and certain characters IN 1 DIALOG
 import { WordReviewDialogComponent } from './dialogs/word-review-dialog/word-review-dialog.component';
+import { WarnCloseDialogComponent } from './dialogs/warn-close-dialog/warn-close-dialog.component';
 
 //------ Decorator ------//
 
@@ -87,24 +87,40 @@ onSubmit(): void {
 
   // Open dialog for reviewing words, method takes no paramenters hence the '()', and doesn't return anything hence the 'void'
   openReviewDialog(): void {
-    // Declares a constant 'const' variable, meaning it cannot be changed, called 'dialogRef' which instanciates and opens a new dialog of type 'WordReviewDialog', using the MatDialog service that has been injected into this class
+    // Open the transliteration dialog
     const dialogRef = this.dialog.open(WordReviewDialogComponent, {
-      // Specifies the data that will be displayed in the dialog component
-      data: { 
-        // The first point of data to be displayed in the dialog is how many words that need to be processed
-        words: this.wordsToProcess, 
-        // The second point of data to be displaye is how many words have been mapped already
-        processedWordsMap: this.processedWordsMap 
+      data: {
+        words: this.wordsToProcess,
+        processedWordsMap: this.processedWordsMap
+      },
+      disableClose: true, // Prevent closing by clicking outside
+    });
+  
+    // Add logic before the dialog closes
+    dialogRef.beforeClosed().subscribe(result => {
+      // Open a confirmation dialog if the user tries to close it
+      if (result === undefined) { // Undefined means the user tried to close without completing
+        const confirmDialogRef = this.dialog.open(WarnCloseDialogComponent, {
+          data: {
+            message: 'Would you like to quit your current transliteration?'
+          }
+        });
+  
+        // Handle user response
+        confirmDialogRef.afterClosed().subscribe(confirmResult => {
+          if (confirmResult === 'yes') {
+            dialogRef.close(); // Close the transliteration dialog
+          } else {
+            this.openReviewDialog(); // Reopen the transliteration dialog
+          }
+        });
       }
     });
-
-    // When the dialog is closed take the words processed and stick them back together
+  
+    // After closing the dialog, handle the processed words
     dialogRef.afterClosed().subscribe((processedWordsMap) => {
-      // Starts an if block saying if processedWordsMap returns anything but 'false' the code withing the block will execute
       if (processedWordsMap) {
-        // sets the processedWordsMap to a variable that can be used in this property
         this.processedWordsMap = processedWordsMap;
-        // This rejoins all of the processed words in the correct order
         this.processedText = Array.from(processedWordsMap.values()).join(' ');
       }
     });
