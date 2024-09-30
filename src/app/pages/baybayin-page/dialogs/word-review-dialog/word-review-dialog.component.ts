@@ -27,32 +27,24 @@ export class WordReviewDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private baybayinDialogProcessorService: BaybayinDialogProcessorService
   ) {
-    this.words = data.words;
+    // Filter words to include only those that have 'ch'
+    this.words = data.words.filter((word: string) => word.includes('ch'));
     this.processedWordsMap = data.processedWordsMap;
-    this.totalWords = this.words.length;  // Calculate total words inside the component
+    this.totalWords = this.words.length; // Calculate total words inside the component
   }
 
-  async processCurrentWord(): Promise<void> {
+  onSelection(replacement: string): void {
     const currentWord = this.words[this.currentWordIndex];
-
-    if (!this.processedWordsMap.has(currentWord)) {
-      const processedWord = await this.baybayinDialogProcessorService.processBaybayinDialog(currentWord);
-      this.processedWordsMap.set(currentWord, processedWord);
-    }
+    const processedWord = currentWord.replace(/ch/g, replacement);
+    this.processedWordsMap.set(currentWord, processedWord);
+    this.nextWord();
   }
 
   async nextWord(): Promise<void> {
     if (this.currentWordIndex < this.totalWords - 1) {
-      await this.processCurrentWord();
       this.currentWordIndex++;
     } else {
       this.finishReview();
-    }
-  }
-
-  async previousWord(): Promise<void> {
-    if (this.currentWordIndex > 0) {
-      this.currentWordIndex--;
     }
   }
 
