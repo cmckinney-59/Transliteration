@@ -16,9 +16,6 @@ import { BaybayinTextProcessorService } from './services/replacement-logic/bayba
 import { BaybayinDialogProcessorService } from './dialogs/baybayin-dialog-processor.service';
 // Imports the BaybayinDesctiptionComponent which houses a brief explanation and history of Baybayin 
 import { BaybayinDescriptionComponent } from './description/baybayin-description.component';
-// Imports the WordReviewDialogComponent which houses tools for a dialog component that handles all of the questions to ask user about proper nouns and certain characters IN 1 DIALOG
-import { WordReviewDialogComponent } from './dialogs/word-review-dialog/word-review-dialog.component';
-import { WarnCloseDialogComponent } from './dialogs/warn-close-dialog/warn-close-dialog.component';
 
 //------ Decorator ------//
 
@@ -70,62 +67,8 @@ export class BaybayinPageComponent {
   ) {}
 //TODO: Figure this out
 // Method that handles the submit button click and opens the review dialog
-onSubmit(): void {
-  // Ensure that the userInput is processed before opening the review dialog
-  if (this.userInput.trim().length > 0) {
-    // Splits the user input into words for processing
-    this.allWords = this.userInput.split(/\s+/);
-    this.wordsToProcess = [...this.allWords];
-
-    // Open the word review dialog
-    this.openReviewDialog();
-  } else {
-    // Display an alert or handle cases where input is empty
-    alert('Please enter text before submitting.');
-  }
-}
-
-  // Open dialog for reviewing words, method takes no paramenters hence the '()', and doesn't return anything hence the 'void'
-  openReviewDialog(): void {
-    // Open the transliteration dialog
-    const dialogRef = this.dialog.open(WordReviewDialogComponent, {
-      data: {
-        words: this.wordsToProcess,
-        processedWordsMap: this.processedWordsMap
-      },
-      disableClose: true, // Prevent closing by clicking outside
-    });
-  
-    // Add logic before the dialog closes
-    dialogRef.beforeClosed().subscribe(result => {
-      // Open a confirmation dialog if the user tries to close it
-      if (result === undefined) { // Undefined means the user tried to close without completing
-        const confirmDialogRef = this.dialog.open(WarnCloseDialogComponent, {
-          data: {
-            message: 'Would you like to quit your current transliteration?'
-          }
-        });
-  
-        // Handle user response
-        confirmDialogRef.afterClosed().subscribe(confirmResult => {
-          if (confirmResult === 'yes') {
-            dialogRef.close(); // Close the transliteration dialog
-          } else {
-            this.openReviewDialog(); // Reopen the transliteration dialog
-          }
-        });
-      }
-    });
-  
-    // After closing the dialog, handle the processed words
-    dialogRef.afterClosed().subscribe((processedWordsMap) => {
-      if (processedWordsMap) {
-        this.processedWordsMap = processedWordsMap;
-        this.processedText = Array.from(processedWordsMap.values()).join(' ');
-      }
-    });
-  }
-
+onSubmit(): void {}
+ 
   // Method to copy the processed text to the clipboard, takes no parameters '()', returns nothing 'void'
   copyToClipboard(): void {
     // A method that takes the processed text and writes it to the clip board
