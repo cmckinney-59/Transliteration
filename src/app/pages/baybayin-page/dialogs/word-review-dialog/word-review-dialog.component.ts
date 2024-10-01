@@ -21,12 +21,15 @@ export class WordReviewDialogComponent {
   words: string[];
   processedWordsMap: Map<string, string>;
   totalWords: number;
+  chWordsIndices: number[];
 
   constructor(
     public dialogRef: MatDialogRef<WordReviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private baybayinDialogProcessorService: BaybayinDialogProcessorService
   ) {
+    // Original words in the sentence
+    this.words = data.words.split(' ');
     // Filter words to include only those that have 'ch'
     this.words = data.words.filter((word: string) => word.includes('ch'));
     this.processedWordsMap = data.processedWordsMap;
