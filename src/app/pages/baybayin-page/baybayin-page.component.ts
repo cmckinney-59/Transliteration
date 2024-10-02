@@ -12,10 +12,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { SaveFileService } from './services/save-file/baybayin-save-file.service';
 // Imports the BaybayinTextProcessorService which provides tools to run user inputs through a series of rules that transliterate the text
 import { BaybayinTextProcessorService } from './services/replacement-logic/baybayin-text-processor.service';
-// Imports the BaybayinDialogProcessorService which provides a dialog tool which asks the user if proper nouns or certain characters need to be replaced in order to become phonetically written
-import { BaybayinDialogProcessorService } from './dialogs/baybayin-dialog-processor.service';
 // Imports the BaybayinDesctiptionComponent which houses a brief explanation and history of Baybayin 
 import { BaybayinDescriptionComponent } from './description/baybayin-description.component';
+import { WordReviewDialogComponent } from './dialogs/word-review-dialog/word-review-dialog.component';
 
 //------ Decorator ------//
 
@@ -56,18 +55,66 @@ export class BaybayinPageComponent {
   // The constructor initializes component and injects any service or  used in the logic of the BaybayinPageComponent
   // Special angular class called when a component is instanciated
   constructor(
-    // Injects the private (only usable in this app) BaybayinProcessorService into the app. Any public methods and objects within the service can be called in the app by using the baybayinTextProcessorService prefix
     private baybayinTextProcessorService: BaybayinTextProcessorService,
-    // Injects the private (only usable in this app) SaveFileService into the app. Any public methods and objects within the service can be called in the app by using the saveFileService prefix
     private saveFileService: SaveFileService,
-    // Injects the private (only usable in this app) BaybayinDialogProcessorService into the app. Any public methods and objects within the service can be called in the app by using the baybainDialogProcessorService prefix
-    private baybainDialogProcessorService: BaybayinDialogProcessorService,
-    // Injects the private (only usable in this app) MatDialog class into the app. Any public methods and objects within the service can be called in the app by using the dialog prefix
-    private dialog: MatDialog
+    public dialog: MatDialog
   ) {}
-//TODO: Figure this out
-// Method that handles the submit button click and opens the review dialog
-onSubmit(): void {}
+// Modify onSubmit() method
+async onSubmit(): Promise<void> {
+  this.allWords = this.userInput.split(' ');
+  this.wordsToProcess = [...this.allWords]; // Make a copy for processing
+
+  for (const word of this.wordsToProcess) {
+    if (this.isCapitalized(word)) {
+      const properNoun = await this.openDialog(`Is "${word}" a proper noun?`);
+      if (properNoun === 'yes') {
+        const spelledPhonetically = await this.openDialog(`Is "${word}" spelled phonetically?`);
+        if (spelledPhonetically === 'no') {
+          const phoneticSpelling = await this.openDialog(`Please provide the phonetic spelling for "${word}"`, true);
+          this.replaceWord(word, phoneticSpelling);
+        }
+      }
+    }
+    if (word.includes('ch')) {
+      const replacement = await this.openDialog(`Does the "ch" in "${word}" sound like "k" or "tiy"?`, false, ['k', 'tiy']);
+      this.replaceWord(word, word.replace('ch', replacement));
+    }
+    if (word.includes('c')) {
+      const replacement = await this.openDialog(`Does the "c" in "${word}" sound like "k" or "s"?`, false, ['k', 's']);
+      this.replaceWord(word, word.replace('c', replacement));
+    }
+    if (word.includes('j')) {
+      const replacement = await this.openDialog(`Does the "j" in "${word}" sound like "h" or "diy"?`, false, ['h', 'diy']);
+      this.replaceWord(word, word.replace('j', replacement));
+    }
+    if (word.includes('qu')) {
+      const replacement = await this.openDialog(`Does the "qu" in "${word}" sound like "kuw" or "k"?`, false, ['kuw', 'k']);
+      this.replaceWord(word, word.replace('qu', replacement));
+    }
+  }
+
+  this.processedText = this.wordsToProcess.join(' ');
+}
+
+isCapitalized(word: string): boolean {
+  return word.charAt(0) === word.charAt(0).toUpperCase();
+}
+
+replaceWord(oldWord: string, newWord: string): void {
+  const index = this.wordsToProcess.indexOf(oldWord);
+  if (index !== -1) {
+    this.wordsToProcess[index] = newWord;
+  }
+}
+
+openDialog(question: string, inputBox = false, options: string[] = []): Promise<string> {
+  const dialogRef = this.dialog.open(WordReviewDialogComponent, {
+    width: '250px',
+    data: { question, inputBox, options },
+  });
+
+  return dialogRef.afterClosed().toPromise();
+}
  
   // Method to copy the processed text to the clipboard, takes no parameters '()', returns nothing 'void'
   copyToClipboard(): void {
