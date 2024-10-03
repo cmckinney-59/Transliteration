@@ -1,14 +1,10 @@
-<h1 mat-dialog-title>{{ data.question }}</h1>
+<h1 mat-dialog-title>Word Review</h1>
 <div mat-dialog-content>
-  <p>{{ data.description }}</p>
-  <ng-container *ngIf="data.inputBox">
-    <input type="text" [(ngModel)]="data.inputValue" placeholder="Enter text">
-  </ng-container>
+  <p>{{ questions[currentQuestionIndex] }}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="dialogRef.close(data.inputValue || 'no')">No</button>
-  <button mat-button (click)="dialogRef.close('yes')">Yes</button>
-  <ng-container *ngFor="let option of data.options">
-    <button mat-button (click)="dialogRef.close(option)">{{ option }}</button>
-  </ng-container>
+  <button mat-button *ngFor="let option of soundOptions" (click)="selectOption(option)">
+    {{ option }}
+  </button>
+  <button mat-button (click)="close()">Cancel</button>
 </div>
