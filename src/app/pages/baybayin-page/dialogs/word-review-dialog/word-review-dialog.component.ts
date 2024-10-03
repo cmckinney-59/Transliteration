@@ -80,7 +80,14 @@ export class WordReviewDialogComponent {
   }
 
   selectOption(option: string): void {
-    // You can store the user's choice here if needed
+    const currentWord = this.data.words[this.currentWordIndex];
+
+    // Replace "ch" with the user-selected option
+    if (this.questions[this.currentQuestionIndex].includes('"ch"')) {
+      this.data.words[this.currentWordIndex] = currentWord.replace(/ch/g, option);
+    }
+    // Add similar logic for other options if needed, e.g., "c", "j", "qu", etc.
+
     console.log(`Selected option: ${option}`);
 
     // Move to the next question or word
