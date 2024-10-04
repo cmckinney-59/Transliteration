@@ -17,60 +17,40 @@ import { BaybayinDescriptionComponent } from './description/baybayin-description
 import { WordReviewDialogComponent } from './dialogs/word-review-dialog/word-review-dialog.component';
 
 //------ Decorator ------//
-
-// This next section is an angular component decorator. It contains metadata for the component.
-// The Component decorator tells angular what kind of file this is
 @Component({
-  // This allows this component to be referrenced in other templates by typing <app-baybayin-page></app-baybayin-page>
   selector: 'app-baybayin-page',
-  // This makes this page standalone, meaning it does not need an app module to function and could function on it's own
   standalone: true,
-  // This provides imports that would otherwise be declared in the app module. FormsModule: Allows for forms tools. BaybayinDescriptionComponent: Provides description of what and history of Baybayin
   imports: [FormsModule, BaybayinDescriptionComponent, MatDialogModule],
-  // This creates a link from this componenet to the corresponding template or html file
   templateUrl: './baybayin-page.component.html',
-  // This links the component to the corresponding style sheet
   styleUrls: ['./baybayin-page.component.scss']
 })
 
 export class BaybayinPageComponent {
-
-  //------ Variables ------//
-
+//------ Variables ------//
   userInput: string = '';
   processedText: string = '';
   processedWordsMap: Map<string, string> = new Map();
   allWords: string[] = [];
   wordsToProcess: string[] = [];
 
-  //------ Constructor ------//
   constructor(
     private baybayinTextProcessorService: BaybayinTextProcessorService,
     private saveFileService: SaveFileService,
     public dialog: MatDialog
   ) {}
 
-  //------ Methods ------//
-
-  // Add the openWordReviewDialog() method here
+//------ Methods ------//
   async onSubmit(): Promise<void> {
-    // Split the user input into words to be processed
-    this.allWords = this.userInput.trim().split(/\s+/);
-    this.wordsToProcess = [...this.allWords];
-  
-    // Open the word review dialog with the words to process
     const dialogRef = this.dialog.open(WordReviewDialogComponent, {
       data: {
-        words: this.wordsToProcess
+        userInput: this.userInput
       }
     });
-  
-    // Wait for the dialog to close and process the results if needed
-    dialogRef.afterClosed().subscribe((result) => {
+
+    dialogRef.afterClosed().subscribe((result: string) => {
       if (result) {
-        // Handle the processed words or any other data returned from the dialog
-        console.log('Word review finished:', result);
-        this.processedText = result.join(' ');
+        this.processedText = result
+        console.log('Processed text from dialog:', this.processedText);
       }
     });
   }
