@@ -1,2 +1,11 @@
-<h2>Word review done</h2>
-<button (click)="finish()">Finish</button>
+<div>
+  <h2>Word Review</h2>
+  <div *ngIf="currentWord">
+    <p>Current word with 'ch': {{ currentWord }}</p>
+    <button mat-button (click)="replaceWithTiy()">Replace 'ch' with 'tiy'</button>
+  </div>
+  <div>
+    <button mat-button (click)="next()">Next</button>
+    <button mat-button (click)="finish()">Finish</button>
+  </div>
+</div>
