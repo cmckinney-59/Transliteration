@@ -13,6 +13,7 @@ import { NgIf } from '@angular/common';
 export class WordReviewDialogComponent {
   // Store words containing 'ch' and the current index
   wordsWithCh: string[] = [];
+  wordsWithC: string[] = [];
   currentIndex: number = 0;
   currentWord: string = '';
   updatedInput: string = '';
@@ -22,10 +23,16 @@ export class WordReviewDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: { userInput: string },
     private baybayinTextProcessorService: BaybayinTextProcessorService
   ) {
-    // Split the user input into words and filter those containing 'ch'
+    // Split the user input into words and filter those containing 'ch' or c
     this.wordsWithCh = this.data.userInput.split(' ').filter(word => word.includes('ch'));
-    // Set the current word to the first one in the filtered list
-    this.currentWord = this.wordsWithCh.length > 0 ? this.wordsWithCh[this.currentIndex] : '';
+    this.wordsWithC = this.data.userInput.split(' ').filter(word => word.includes('c'));
+
+    // Set the current word to the first one in the filtered list of 'ch' or 'c'
+    if (this.wordsWithCh.length > 0) {
+      this.currentWord = this.wordsWithCh[this.currentIndex];
+    } else if (this.wordsWithC.length > 0) {
+      this.currentWord = this.wordsWithC[this.currentIndex];
+    }
 
     this.updatedInput = this.data.userInput;
   }
@@ -35,6 +42,9 @@ export class WordReviewDialogComponent {
     if (this.currentIndex < this.wordsWithCh.length - 1) {
       this.currentIndex++;
       this.currentWord = this.wordsWithCh[this.currentIndex];
+    } else if (this.currentIndex < this.wordsWithC.length - 1) {
+      this.currentIndex++;
+      this.currentWord = this.wordsWithC[this.currentIndex];
     } else {
       // If no more words are left, close the dialog and process the text
       this.finish();
@@ -58,6 +68,34 @@ export class WordReviewDialogComponent {
   replaceChWithK(): void {
     // Replace 'ch' with 'k' in the current word
     const updatedWord = this.currentWord.replace(/ch/g, 'k');
+
+    // Update the entire input string with the modified word
+    this.updatedInput = this.updatedInput.replace(this.currentWord, updatedWord);
+    
+    console.log('Updated word:', updatedWord); // For debugging purposes
+    console.log('Updated input:', this.updatedInput); // Log the updated input
+
+    // Move to the next word after replacement
+    this.next();
+  }
+
+  replaceCWithS(): void {
+    // Replace 'c' with 's' in the current word
+    const updatedWord = this.currentWord.replace(/c/g, 's');
+
+    // Update the entire input string with the modified word
+    this.updatedInput = this.updatedInput.replace(this.currentWord, updatedWord);
+    
+    console.log('Updated word:', updatedWord); // For debugging purposes
+    console.log('Updated input:', this.updatedInput); // Log the updated input
+
+    // Move to the next word after replacement
+    this.next();
+  }
+
+  replaceCWithK(): void {
+    // Replace 'c' with 'k' in the current word
+    const updatedWord = this.currentWord.replace(/c/g, 'k');
 
     // Update the entire input string with the modified word
     this.updatedInput = this.updatedInput.replace(this.currentWord, updatedWord);
