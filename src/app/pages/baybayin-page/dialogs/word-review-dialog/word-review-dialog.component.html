@@ -1,17 +1,16 @@
 <h2>Word Review</h2>
 <div>
   <p>Current word: <strong>{{ currentWord }}</strong></p>
-  <p>Updated input: <strong>{{ updatedInput }}</strong></p>
 </div>
-<div *ngIf="currentWord.includes('c')">
-  <p>Choose replacement for 'c':</p>
-  <button (click)="replaceCWithS()">Replace 'c' with 's'</button>
-  <button (click)="replaceCWithK()">Replace 'c' with 'k'</button>
+<div *ngIf="currentWord.includes('c') && !currentWord.includes('ch')">
+  <p>Does the "c" in {{ currentWord }} sound like "s" or "k"</p>
+  <button (click)="replaceCWithS()">"s"</button>
+  <button (click)="replaceCWithK()">"k"</button>
 </div>
 <div *ngIf="currentWord.includes('ch')">
-  <p>Choose replacement for 'ch':</p>
-  <button (click)="replaceChWithTiy()">Replace 'ch' with 'tiy'</button>
-  <button (click)="replaceChWithK()">Replace 'ch' with 'k'</button>
+  <p>Does the "ch" in {{ currentWord }} sound like "tiy" or "k"?</p>
+  <button (click)="replaceChWithTiy()">"tiy"</button>
+  <button (click)="replaceChWithK()">"k"</button>
 </div>
 <div>
   <button (click)="next()">Next</button>

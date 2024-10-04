@@ -11,7 +11,7 @@ import { NgIf } from '@angular/common';
   styleUrls: ['./word-review-dialog.component.scss']
 })
 export class WordReviewDialogComponent {
-  // Store words containing 'ch' and the current index
+  // Store words containing 'ch' and 'c' and the current index
   wordsWithCh: string[] = [];
   wordsWithC: string[] = [];
   currentIndex: number = 0;
@@ -23,10 +23,10 @@ export class WordReviewDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: { userInput: string },
     private baybayinTextProcessorService: BaybayinTextProcessorService
   ) {
-    // Split the user input into words and filter those containing 'ch' or c
+    // Split the user input into words and filter those containing 'ch' or 'c'
     this.wordsWithCh = this.data.userInput.split(' ').filter(word => word.includes('ch'));
     this.wordsWithC = this.data.userInput.split(' ').filter(word => word.includes('c'));
-
+    
     // Set the current word to the first one in the filtered list of 'ch' or 'c'
     if (this.wordsWithCh.length > 0) {
       this.currentWord = this.wordsWithCh[this.currentIndex];
