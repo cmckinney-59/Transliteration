@@ -2,7 +2,8 @@
   <h2>Word Review</h2>
   <div *ngIf="currentWord">
     <p>Current word with 'ch': {{ currentWord }}</p>
-    <button mat-button (click)="replaceWithTiy()">Replace 'ch' with 'tiy'</button>
+    <button mat-button (click)="replaceChWithTiy()">Replace 'ch' with 'tiy'</button>
+    <button mat-button (click)="replaceChWithK()">Replace 'ch' with 'k'</button>
   </div>
   <div>
     <button mat-button (click)="next()">Next</button>

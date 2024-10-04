@@ -41,9 +41,23 @@ export class WordReviewDialogComponent {
     }
   }
 
-  replaceWithTiy(): void {
+  replaceChWithTiy(): void {
     // Replace 'ch' with 'tiy' in the current word
     const updatedWord = this.currentWord.replace(/ch/g, 'tiy');
+
+    // Update the entire input string with the modified word
+    this.updatedInput = this.updatedInput.replace(this.currentWord, updatedWord);
+    
+    console.log('Updated word:', updatedWord); // For debugging purposes
+    console.log('Updated input:', this.updatedInput); // Log the updated input
+
+    // Move to the next word after replacement
+    this.next();
+  }
+
+  replaceChWithK(): void {
+    // Replace 'ch' with 'k' in the current word
+    const updatedWord = this.currentWord.replace(/ch/g, 'k');
 
     // Update the entire input string with the modified word
     this.updatedInput = this.updatedInput.replace(this.currentWord, updatedWord);
