@@ -70,6 +70,7 @@ export class BaybayinPageComponent {
       if (result) {
         // Handle the processed words or any other data returned from the dialog
         console.log('Word review finished:', result);
+        this.processedText = result.join(' ');
       }
     });
   }

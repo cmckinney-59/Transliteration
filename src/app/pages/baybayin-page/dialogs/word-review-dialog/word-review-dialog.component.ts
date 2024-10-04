@@ -15,6 +15,7 @@ export class WordReviewDialogComponent {
   currentQuestionIndex: number = 0;
   questions: string[] = [];
   soundOptions: string[] = [];
+  processedWords: string[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<WordReviewDialogComponent>,
@@ -80,21 +81,20 @@ export class WordReviewDialogComponent {
   }
 
   selectOption(option: string): void {
-    const currentWord = this.data.words[this.currentWordIndex];
-
-    // Replace "ch" with the user-selected option
-    if (this.questions[this.currentQuestionIndex].includes('"ch"')) {
-      this.data.words[this.currentWordIndex] = currentWord.replace(/ch/g, option);
+    // Replace the current word based on the selected option
+    let word = this.data.words[this.currentWordIndex];
+    if (word.includes('ch') && (option === 'k' || option === 'tiy')) {
+      word = word.replace('ch', option);
     }
-    // Add similar logic for other options if needed, e.g., "c", "j", "qu", etc.
-
-    console.log(`Selected option: ${option}`);
-
+    // Store the processed word
+    this.processedWords[this.currentWordIndex] = word;
+  
     // Move to the next question or word
     this.next();
   }
-
+  
   close(): void {
-    this.dialogRef.close();
+    // Pass the processed words back when the dialog is closed
+    this.dialogRef.close(this.processedWords);
   }
 }
