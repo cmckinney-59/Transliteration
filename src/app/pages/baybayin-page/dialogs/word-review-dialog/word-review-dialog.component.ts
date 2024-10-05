@@ -14,6 +14,8 @@ export class WordReviewDialogComponent {
   // Store words containing 'ch' and 'c' and the current index
   wordsWithCh: string[] = [];
   wordsWithC: string[] = [];
+  allWordsToProcess: string [] = [];
+  totalWordsToProcess: number = 0;
   currentIndex: number = 0;
   currentWord: string = '';
   updatedInput: string = '';
@@ -24,6 +26,13 @@ export class WordReviewDialogComponent {
     private baybayinTextProcessorService: BaybayinTextProcessorService
   ) {
     // Split the user input into words and filter those containing 'ch' or 'c'
+    this.allWordsToProcess = this.data.userInput.split(' ').filter(word => 
+    word.includes('ch') 
+    || word.includes('c') 
+    || word.includes('j')
+    || word.includes('q')
+    );
+    this.totalWordsToProcess = this.allWordsToProcess.length;
     this.wordsWithCh = this.data.userInput.split(' ').filter(word => word.includes('ch'));
     this.wordsWithC = this.data.userInput.split(' ').filter(word => word.includes('c'));
     
