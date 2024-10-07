@@ -25,6 +25,8 @@ export class WordReviewDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: { userInput: string },
     private baybayinTextProcessorService: BaybayinTextProcessorService
   ) {
+    // ToDo: This may need to run all of the words with ch first then c
+
     // Split the user input into words and filter those containing 'ch' or 'c'
     this.allWordsToProcess = this.data.userInput.split(' ').filter(word => 
     word.includes('ch') 
