@@ -19,6 +19,7 @@ export class WordReviewDialogComponent {
   currentIndex: number = 0;
   currentWord: string = '';
   updatedInput: string = '';
+  isProcessingCh: boolean = true; // Flag to check if processing 'ch'
 
   constructor(
     public dialogRef: MatDialogRef<WordReviewDialogComponent>,
@@ -38,27 +39,39 @@ export class WordReviewDialogComponent {
     this.wordsWithCh = this.data.userInput.split(' ').filter(word => word.includes('ch'));
     this.wordsWithC = this.data.userInput.split(' ').filter(word => word.includes('c'));
     
-    // Set the current word to the first one in the filtered list of 'ch' or 'c'
+    // Set the current word to the first one in the filtered list of 'ch'
     if (this.wordsWithCh.length > 0) {
       this.currentWord = this.wordsWithCh[this.currentIndex];
-    } else if (this.wordsWithC.length > 0) {
-      this.currentWord = this.wordsWithC[this.currentIndex];
     }
-
     this.updatedInput = this.data.userInput;
   }
 
   next(): void {
-    // Move to the next word, if available
-    if (this.currentIndex < this.wordsWithCh.length - 1) {
-      this.currentIndex++;
-      this.currentWord = this.wordsWithCh[this.currentIndex];
-    } else if (this.currentIndex < this.wordsWithC.length - 1) {
-      this.currentIndex++;
-      this.currentWord = this.wordsWithC[this.currentIndex];
+    // If currently processing 'ch' and more words with 'ch' exist
+    if (this.isProcessingCh) {
+      if (this.currentIndex < this.wordsWithCh.length - 1) {
+        this.currentIndex++;
+        this.currentWord = this.wordsWithCh[this.currentIndex];
+      } else {
+        // After processing all 'ch', switch to processing 'c'
+        this.currentIndex = 0; // Reset index for 'c'
+        this.isProcessingCh = false; // Switch to processing 'c'
+        if (this.wordsWithC.length > 0) {
+          this.currentWord = this.wordsWithC[this.currentIndex];
+        } else {
+          // If no more words are left, close the dialog and process the text
+          this.finish();
+        }
+      }
     } else {
-      // If no more words are left, close the dialog and process the text
-      this.finish();
+      // Move to the next word if processing 'c'
+      if (this.currentIndex < this.wordsWithC.length - 1) {
+        this.currentIndex++;
+        this.currentWord = this.wordsWithC[this.currentIndex];
+      } else {
+        // If no more words are left, close the dialog and process the text
+        this.finish();
+      }
     }
   }
 

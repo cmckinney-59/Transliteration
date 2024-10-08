@@ -1,8 +1,8 @@
 <h2>Word Review</h2>
 <div>
   <p>Current word: <strong>{{ currentWord }}</strong></p>
-  <p>All words: <strong>{{ allWordsToProcess }}</strong></p>
-  <p>Total: <strong>{{ totalWordsToProcess }}</strong></p>
+  <p>Words with c: <strong>{{ wordsWithC }}</strong></p>
+  <p>Words with ch: <strong>{{ wordsWithCh }}</strong></p>
 </div>
 <div *ngIf="currentWord.includes('c') && !currentWord.includes('ch')">
   <p>Does the "c" in {{ currentWord }} sound like "s" or "k"</p>
