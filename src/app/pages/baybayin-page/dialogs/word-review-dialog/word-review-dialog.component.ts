@@ -14,6 +14,7 @@ export class WordReviewDialogComponent {
   currentWord: string = '';
   updatedInput: string = '';
   currentChIndex: number = 0;
+  currentCIndex: number = 0;
 
   constructor(
     public dialogRef: MatDialogRef<WordReviewDialogComponent>,
@@ -23,14 +24,17 @@ export class WordReviewDialogComponent {
     this.currentWord = this.data.userInput;
     this.updatedInput = this.currentWord;
     this.currentChIndex = this.updatedInput.indexOf('ch');  // Find the first occurrence of 'ch'
+    this.currentChIndex = this.updatedInput.indexOf('c');  // Find the first occurrence of 'ch'
   }
 
   // Method to move to the next occurrence of 'ch'
   next(): void {
     this.currentChIndex = this.updatedInput.indexOf('ch', this.currentChIndex + 1); // Look for the next 'ch'
     if (this.currentChIndex === -1) {
-      // No more 'ch' left, finish processing
-      this.finish();
+      this.currentCIndex = this.updatedInput.indexOf('c', this.currentCIndex + 1); // Look for the next 'ch'
+      if (this.currentCIndex === -1) {
+        this.finish();
+      }
     }
   }
 
@@ -46,6 +50,20 @@ export class WordReviewDialogComponent {
     this.updatedInput = this.updatedInput.slice(0, this.currentChIndex) + 'k' + this.updatedInput.slice(this.currentChIndex + 2);
     console.log('Updated word:', this.updatedInput);
     this.next();  // Move to the next occurrence of 'ch'
+  }
+    
+  // Replace 'c' with 's' at the current index
+  replaceCWithS(): void {
+    this.updatedInput = this.updatedInput.slice(0, this.currentCIndex) + 's' + this.updatedInput.slice(this.currentCIndex + 2);
+    console.log('Updated word:', this.updatedInput);
+    this.next();  // Move to the next occurrence of 'c'
+  }
+
+  // Replace 'ch' with 'tiy' at the current index
+  replaceCWithK(): void {
+    this.updatedInput = this.updatedInput.slice(0, this.currentCIndex) + 'k' + this.updatedInput.slice(this.currentCIndex + 2);
+    console.log('Updated word:', this.updatedInput);
+    this.next();  // Move to the next occurrence of 'c'
   }
 
   // Finish and close the dialog, returning the final processed word
