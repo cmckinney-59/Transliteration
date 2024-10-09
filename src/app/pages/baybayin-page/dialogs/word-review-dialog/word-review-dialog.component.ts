@@ -11,85 +11,96 @@ import { NgIf } from '@angular/common';
   styleUrls: ['./word-review-dialog.component.scss']
 })
 export class WordReviewDialogComponent {
-  currentWord: string = '';
-  updatedInput: string = '';
+  words: string[] = [];
+  currentWordIndex: number = 0;
   currentChIndex: number = 0;
   currentCIndex: number = 0;
+  updatedInput: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<WordReviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { userInput: string },
     private baybayinTextProcessorService: BaybayinTextProcessorService
   ) {
-    this.currentWord = this.data.userInput;
-    this.updatedInput = this.currentWord;
-    this.currentChIndex = this.updatedInput.indexOf('ch');  // Find the first occurrence of 'ch'
-    this.currentCIndex = this.updatedInput.indexOf('c');  // Find the first occurrence of 'ch'
+    this.words = this.data.userInput.split(' ');  // Split input into words
+    this.updatedInput = this.data.userInput;
+    this.processCurrentWord();  // Start processing the first word
   }
 
-  // Method to move to the next occurrence of 'ch'
-  next(): void {
-    if (this.currentChIndex !== -1) {
-      this.currentChIndex = this.updatedInput.indexOf('ch', this.currentChIndex + 1); // Look for the next 'ch'
-    }
-  
-    if (this.currentChIndex === -1 && this.currentCIndex !== -1) {
-      this.currentCIndex = this.updatedInput.indexOf('c', this.currentCIndex + 1); // Look for the next 'c'
-    }
-  
-    if (this.currentChIndex === -1 && this.currentCIndex === -1) {
-      this.finish();
-    }
-  }
-
-  // Replace 'ch' with 'tiy' at the current index
-  replaceChWithTiy(): void {
-    this.updatedInput = this.updatedInput.slice(0, this.currentChIndex) + 'tiy' + this.updatedInput.slice(this.currentChIndex + 2);
-    console.log('Updated word:', this.updatedInput);
-    this.next();  // Move to the next occurrence of 'ch'
-  }
-
-  // Replace 'ch' with 'k' at the current index
-  replaceChWithK(): void {
-    this.updatedInput = this.updatedInput.slice(0, this.currentChIndex) + 'k' + this.updatedInput.slice(this.currentChIndex + 2);
-    console.log('Updated word:', this.updatedInput);
-    this.next();  // Move to the next occurrence of 'ch'
-  }
-    
-  replaceC(replacement: string): void {
-    this.currentWord = this.currentWord.replace(/c(?!h)/, replacement);
-    this.updatedInput = this.updatedInput.replace(/c(?!h)/, replacement);
-    console.log('Updated word:', this.currentWord);
-    console.log('Updated input:', this.updatedInput);
-  
-    if (this.currentWord.match(/c(?!h)/g)) {
-      this.showPromptForNextC();
+  // Method to process the current word
+  processCurrentWord(): void {
+    if (this.currentWordIndex < this.words.length) {
+      let currentWord = this.words[this.currentWordIndex];
+      this.currentChIndex = currentWord.indexOf('ch');  // Find the first occurrence of 'ch'
+      this.currentCIndex = currentWord.indexOf('c');  // Find the first occurrence of 'c'
+      
+      if (this.currentChIndex !== -1) {
+        this.promptForCh();  // Ask for 'ch' replacement
+      } else if (this.currentCIndex !== -1) {
+        this.promptForC();  // Ask for 'c' replacement
+      } else {
+        this.nextWord();  // Move to the next word if no 'ch' or 'c'
+      }
     } else {
-      this.next();
+      this.finish();  // Finish when all words are processed
     }
   }
 
+  // Replace 'ch' with 'tiy'
+  replaceChWithTiy(): void {
+    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('ch', 'tiy');
+    this.updateInput();
+    this.processCurrentWord();  // Process again in case there are more 'ch' occurrences
+  }
+
+  // Replace 'ch' with 'k'
+  replaceChWithK(): void {
+    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('ch', 'k');
+    this.updateInput();
+    this.processCurrentWord();  // Process again in case there are more 'ch' occurrences
+  }
+
+  // Replace 'c' (but not 'ch') with 's'
   replaceCWithS(): void {
-    this.replaceC('s');
+    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 's');
+    this.updateInput();
+    this.processCurrentWord();  // Process again in case there are more 'c' occurrences
   }
-  
+
+  // Replace 'c' (but not 'ch') with 'k'
   replaceCWithK(): void {
-    this.replaceC('k');
+    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 'k');
+    this.updateInput();
+    this.processCurrentWord();  // Process again in case there are more 'c' occurrences
   }
 
-  showPromptForNextC(): void {
-    // Code to re-display the dialog for 'c' replacement
-    console.log('Prompting for the next "c" in:', this.currentWord);
+  // Move to the next word in the input
+  nextWord(): void {
+    this.currentWordIndex++;
+    this.processCurrentWord();  // Process the next word
   }
 
-  hasCWithoutCh(word: string): boolean {
-    return /c(?!h)/g.test(word); // This checks for 'c' not followed by 'h'
+  // Update the entire input string after modifying a word
+  updateInput(): void {
+    this.updatedInput = this.words.join(' ');
+    console.log('Updated input:', this.updatedInput);
   }
 
-  // Finish and close the dialog, returning the final processed word
+  // Finish processing and close the dialog
   finish(): void {
     const processedText = this.baybayinTextProcessorService.processBaybayinText(this.updatedInput);
     console.log('Processed text:', processedText);
     this.dialogRef.close(processedText);  // Return the final processed text
+  }
+
+  // Prompt methods (you need to implement the actual dialog for these)
+  promptForCh(): void {
+    console.log(`Does the 'ch' in '${this.words[this.currentWordIndex]}' sound like 'tiy' or 'k'?`);
+    // Show dialog to get user input
+  }
+
+  promptForC(): void {
+    console.log(`Does the 'c' in '${this.words[this.currentWordIndex]}' sound like 's' or 'k'?`);
+    // Show dialog to get user input
   }
 }
