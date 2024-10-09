@@ -8,7 +8,7 @@
   <button (click)="replaceChWithTiy()">"tiy"</button>
   <button (click)="replaceChWithK()">"k"</button>
 </div>
-<div *ngIf="currentWord.includes('c')">
+<div *ngIf="hasCWithoutCh(currentWord)">
   <p>Does the "c" in {{ currentWord }} sound like "s" or "k"?</p>
   <button (click)="replaceCWithS()">"s"</button>
   <button (click)="replaceCWithK()">"k"</button>
