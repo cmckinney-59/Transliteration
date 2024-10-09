@@ -11,134 +11,47 @@ import { NgIf } from '@angular/common';
   styleUrls: ['./word-review-dialog.component.scss']
 })
 export class WordReviewDialogComponent {
-  // Store words containing 'ch' and 'c' and the current index
-  wordsWithCh: string[] = [];
-  wordsWithC: string[] = [];
-  allWordsToProcess: string [] = [];
-  totalWordsToProcess: number = 0;
-  currentIndex: number = 0;
   currentWord: string = '';
   updatedInput: string = '';
-  isProcessingCh: boolean = true; // Flag to check if processing 'ch'
+  currentChIndex: number = 0;
 
   constructor(
     public dialogRef: MatDialogRef<WordReviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { userInput: string },
     private baybayinTextProcessorService: BaybayinTextProcessorService
   ) {
-    // ToDo: This may need to run all of the words with ch first then c
-
-    // Split the user input into words and filter those containing 'ch' or 'c'
-    this.allWordsToProcess = this.data.userInput.split(' ').filter(word => 
-    word.includes('ch') 
-    || word.includes('c') 
-    || word.includes('j')
-    || word.includes('q')
-    );
-    this.totalWordsToProcess = this.allWordsToProcess.length;
-    this.wordsWithCh = this.data.userInput.split(' ').filter(word => word.includes('ch'));
-    this.wordsWithC = this.data.userInput.split(' ').filter(word => word.includes('c'));
-    
-    // Set the current word to the first one in the filtered list of 'ch'
-    if (this.wordsWithCh.length > 0) {
-      this.currentWord = this.wordsWithCh[this.currentIndex];
-    }
-    this.updatedInput = this.data.userInput;
+    this.currentWord = this.data.userInput;
+    this.updatedInput = this.currentWord;
+    this.currentChIndex = this.updatedInput.indexOf('ch');  // Find the first occurrence of 'ch'
   }
 
+  // Method to move to the next occurrence of 'ch'
   next(): void {
-    // If currently processing 'ch' and more words with 'ch' exist
-    if (this.isProcessingCh) {
-      if (this.currentIndex < this.wordsWithCh.length - 1) {
-        this.currentIndex++;
-        this.currentWord = this.wordsWithCh[this.currentIndex];
-      } else {
-        // After processing all 'ch', switch to processing 'c'
-        this.currentIndex = 0; // Reset index for 'c'
-        this.isProcessingCh = false; // Switch to processing 'c'
-        if (this.wordsWithC.length > 0) {
-          this.currentWord = this.wordsWithC[this.currentIndex];
-        } else {
-          // If no more words are left, close the dialog and process the text
-          this.finish();
-        }
-      }
-    } else {
-      // Move to the next word if processing 'c'
-      if (this.currentIndex < this.wordsWithC.length - 1) {
-        this.currentIndex++;
-        this.currentWord = this.wordsWithC[this.currentIndex];
-      } else {
-        // If no more words are left, close the dialog and process the text
-        this.finish();
-      }
+    this.currentChIndex = this.updatedInput.indexOf('ch', this.currentChIndex + 1); // Look for the next 'ch'
+    if (this.currentChIndex === -1) {
+      // No more 'ch' left, finish processing
+      this.finish();
     }
   }
 
+  // Replace 'ch' with 'tiy' at the current index
   replaceChWithTiy(): void {
-    // Replace 'ch' with 'tiy' in the current word
-    const updatedWord = this.currentWord.replace(/ch/g, 'tiy');
-
-    // Update the entire input string with the modified word
-    this.updatedInput = this.updatedInput.replace(this.currentWord, updatedWord);
-    
-    console.log('Updated word:', updatedWord); // For debugging purposes
-    console.log('Updated input:', this.updatedInput); // Log the updated input
-
-    // Move to the next word after replacement
-    this.next();
+    this.updatedInput = this.updatedInput.slice(0, this.currentChIndex) + 'tiy' + this.updatedInput.slice(this.currentChIndex + 2);
+    console.log('Updated word:', this.updatedInput);
+    this.next();  // Move to the next occurrence of 'ch'
   }
 
+  // Replace 'ch' with 'k' at the current index
   replaceChWithK(): void {
-    // Replace 'ch' with 'k' in the current word
-    const updatedWord = this.currentWord.replace(/ch/g, 'k');
-
-    // Update the entire input string with the modified word
-    this.updatedInput = this.updatedInput.replace(this.currentWord, updatedWord);
-    
-    console.log('Updated word:', updatedWord); // For debugging purposes
-    console.log('Updated input:', this.updatedInput); // Log the updated input
-
-    // Move to the next word after replacement
-    this.next();
+    this.updatedInput = this.updatedInput.slice(0, this.currentChIndex) + 'k' + this.updatedInput.slice(this.currentChIndex + 2);
+    console.log('Updated word:', this.updatedInput);
+    this.next();  // Move to the next occurrence of 'ch'
   }
 
-  replaceCWithS(): void {
-    // Replace 'c' with 's' in the current word
-    const updatedWord = this.currentWord.replace(/c/g, 's');
-
-    // Update the entire input string with the modified word
-    this.updatedInput = this.updatedInput.replace(this.currentWord, updatedWord);
-    
-    console.log('Updated word:', updatedWord); // For debugging purposes
-    console.log('Updated input:', this.updatedInput); // Log the updated input
-
-    // Move to the next word after replacement
-    this.next();
-  }
-
-  replaceCWithK(): void {
-    // Replace 'c' with 'k' in the current word
-    const updatedWord = this.currentWord.replace(/c/g, 'k');
-
-    // Update the entire input string with the modified word
-    this.updatedInput = this.updatedInput.replace(this.currentWord, updatedWord);
-    
-    console.log('Updated word:', updatedWord); // For debugging purposes
-    console.log('Updated input:', this.updatedInput); // Log the updated input
-
-    // Move to the next word after replacement
-    this.next();
-  }
-
+  // Finish and close the dialog, returning the final processed word
   finish(): void {
-    // Call the processBaybayinText method with the user input
     const processedText = this.baybayinTextProcessorService.processBaybayinText(this.updatedInput);
-    
-    // Log or handle the processed text as needed
     console.log('Processed text:', processedText);
-    
-    // Close the dialog
-    this.dialogRef.close(processedText);
+    this.dialogRef.close(processedText);  // Return the final processed text
   }
 }

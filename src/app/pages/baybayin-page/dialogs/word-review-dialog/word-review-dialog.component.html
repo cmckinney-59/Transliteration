@@ -1,13 +1,7 @@
 <h2>Word Review</h2>
 <div>
   <p>Current word: <strong>{{ currentWord }}</strong></p>
-  <p>Words with c: <strong>{{ wordsWithC }}</strong></p>
-  <p>Words with ch: <strong>{{ wordsWithCh }}</strong></p>
-</div>
-<div *ngIf="currentWord.includes('c') && !currentWord.includes('ch')">
-  <p>Does the "c" in {{ currentWord }} sound like "s" or "k"</p>
-  <button (click)="replaceCWithS()">"s"</button>
-  <button (click)="replaceCWithK()">"k"</button>
+  <p>Current word: <strong>{{ currentChIndex }}</strong></p>
 </div>
 <div *ngIf="currentWord.includes('ch')">
   <p>Does the "ch" in {{ currentWord }} sound like "tiy" or "k"?</p>
