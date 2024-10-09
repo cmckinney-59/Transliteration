@@ -3,8 +3,17 @@
 <!-- Show the current word being processed -->
 <div>
   <p>Current word: <strong>{{ words[currentWordIndex] }}</strong></p>
-  <p>Current "ch" index: <strong>{{ currentChIndex }}</strong></p>
   <p>Current "c" index: <strong>{{ currentCIndex }}</strong></p>
+  <p>Current "ch" index: <strong>{{ currentChIndex }}</strong></p>
+  <p>Current "j" index: <strong>{{ currentJIndex }}</strong></p>
+  <p>Current "qu" index: <strong>{{ currentQuIndex }}</strong></p>
+</div>
+
+<!-- Only show if there is a 'c' that is not followed by 'h' in the current word -->
+<div *ngIf="currentCIndex !== -1 && !words[currentWordIndex].includes('ch')">
+  <p>Does the "c" in {{ words[currentWordIndex] }} sound like "s" or "k"?</p>
+  <button (click)="replaceCWithS()">"s"</button>
+  <button (click)="replaceCWithK()">"k"</button>
 </div>
 
 <!-- Only show if 'ch' is found in the current word -->
@@ -14,11 +23,18 @@
   <button (click)="replaceChWithK()">"k"</button>
 </div>
 
-<!-- Only show if there is a 'c' that is not followed by 'h' in the current word -->
-<div *ngIf="currentCIndex !== -1 && !words[currentWordIndex].includes('ch')">
-  <p>Does the "c" in {{ words[currentWordIndex] }} sound like "s" or "k"?</p>
-  <button (click)="replaceCWithS()">"s"</button>
-  <button (click)="replaceCWithK()">"k"</button>
+<!-- Only show if there is a 'j' in the current word -->
+<div *ngIf="currentJIndex !== -1">
+  <p>Does the "j" in {{ words[currentWordIndex] }} sound like "diy" or "h"?</p>
+  <button (click)="replaceJWithDiy()">"diy"</button>
+  <button (click)="replaceJWithH()">"h"</button>
+</div>
+
+<!-- Only show if there is a 'qu' in the current word -->
+<div *ngIf="currentQuIndex !== -1">
+  <p>Does the "qu" in {{ words[currentWordIndex] }} sound like "kuw" or "k"?</p>
+  <button (click)="replaceQuWithKuw()">"kuw"</button>
+  <button (click)="replaceQuWithK()">"k"</button>
 </div>
 
 <!-- Navigation buttons -->
