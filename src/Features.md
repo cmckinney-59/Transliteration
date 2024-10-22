@@ -1,3 +1,5 @@
+- Work on this tomorrow
+
 - Make it so dialog processor doesn't ask the same word twice
 
 - Make app not standalone
