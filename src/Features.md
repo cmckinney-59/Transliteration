@@ -6,6 +6,8 @@
 
 - Fix space dialog bug
 
+- Fix navigation panel white bar size when hovering over option
+
 - Replace numbers and punctuation with a different font
 
 - Fix header
