@@ -41,18 +41,21 @@ export class BaybayinPageComponent {
 
 //------ Methods ------//
   async onSubmit(): Promise<void> {
-    const dialogRef = this.dialog.open(WordReviewDialogComponent, {
-      data: {
-        userInput: this.userInput
-      }
-    });
-
-    dialogRef.afterClosed().subscribe((result: string) => {
-      if (result) {
-        this.processedText = result
-        console.log('Processed text from dialog:', this.processedText);
-      }
-    });
+    if (/[c]|ch|j|qu|[A-Z]/.test(this.userInput)) {
+      const dialogRef = this.dialog.open(WordReviewDialogComponent, {
+        data: {
+          userInput: this.userInput
+        }
+      });
+    
+      dialogRef.afterClosed().subscribe((result: string) => {
+        if (result) {
+          this.processedText = result;
+          console.log('Processed text from dialog:', this.processedText);
+        }
+      });
+    }
+    const result = this.baybayinTextProcessorService.processBaybayinText(this.userInput);
   }
 
   // Method to copy the processed text to the clipboard

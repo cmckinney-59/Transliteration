@@ -134,9 +134,7 @@ export class WordReviewDialogComponent {
 
   // Finish processing and close the dialog
   finish(): void {
-    const processedText = this.baybayinTextProcessorService.processBaybayinText(this.updatedInput);
-    console.log('Processed text:', processedText);
-    this.dialogRef.close(processedText);  // Return the final processed text
+    this.dialogRef.close(this.updatedInput);  // Return the final processed text
   }
 
   promptForC(): void {
