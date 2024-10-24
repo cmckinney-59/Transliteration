@@ -54,8 +54,9 @@ export class BaybayinPageComponent {
           console.log('Processed text from dialog:', this.processedText);
         }
       });
+    } else {
+      this.processedText = this.baybayinTextProcessorService.processBaybayinText(this.userInput);
     }
-    const result = this.baybayinTextProcessorService.processBaybayinText(this.userInput);
   }
 
   // Method to copy the processed text to the clipboard
