@@ -3,7 +3,6 @@ BUGS
 - Fix navigation panel white bar size when hovering over option
 
 Dialog:
-- Make it so the dialog does not open unless there are words with c, ch, qu, j or proper nouns
 - Fix header
 - Fix space registering as a word
 
