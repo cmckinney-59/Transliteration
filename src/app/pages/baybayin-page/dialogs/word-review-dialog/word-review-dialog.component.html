@@ -11,9 +11,10 @@
 
 <!-- Only show if there is a 'c' that is not followed by 'h' in the current word -->
 <div *ngIf="currentCIndex !== -1 && !words[currentWordIndex].includes('ch')">
-  <p>Does the "c" in {{ words[currentWordIndex] }} sound like "s" or "k"?</p>
+  <p>Does the "c" in {{ words[currentWordIndex] }} sound like "s", "k" or "tiy"?</p>
   <button (click)="replaceCWithS()">"s"</button>
   <button (click)="replaceCWithK()">"k"</button>
+  <button (click)="replaceCWithTiy()">"tiy"</button>
 </div>
 
 <!-- Only show if 'ch' is found in the current word -->

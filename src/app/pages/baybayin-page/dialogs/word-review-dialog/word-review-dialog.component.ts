@@ -79,6 +79,13 @@ export class WordReviewDialogComponent {
   }
 
   // Replace 'ch' with 'tiy'
+  replaceCWithTiy(): void {
+      this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('ch', 'tiy');
+      this.updateInput();
+      this.processCurrentWord();  // Process again in case there are more 'ch' occurrences
+  }
+
+  // Replace 'ch' with 'tiy'
   replaceChWithTiy(): void {
     this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('ch', 'tiy');
     this.updateInput();
@@ -140,7 +147,7 @@ export class WordReviewDialogComponent {
   }
 
   promptForC(): void {
-    console.log(`Does the 'c' in '${this.words[this.currentWordIndex]}' sound like 's' or 'k'?`);
+    console.log(`Does the 'c' in '${this.words[this.currentWordIndex]}' sound like 's', 'k' or 'ch'?`);
     // Show dialog to get user input
   }
 
