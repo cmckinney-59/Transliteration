@@ -9,6 +9,7 @@ Dialog:
 
 FEATURES:
 
+- Add proper noun checker
 - Make it so dialog processor doesn't ask the same word twice
 - Make app not standalone
 - Replace numbers and punctuation with a different font
