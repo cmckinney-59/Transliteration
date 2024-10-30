@@ -80,9 +80,9 @@ export class WordReviewDialogComponent {
 
   // Replace 'ch' with 'tiy'
   replaceCWithTiy(): void {
-      this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('ch', 'tiy');
+      this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('c', 'tiy');
       this.updateInput();
-      this.processCurrentWord();  // Process again in case there are more 'ch' occurrences
+      this.processCurrentWord();  // Process again in case there are more 'cc' occurrences
   }
 
   // Replace 'ch' with 'tiy'
