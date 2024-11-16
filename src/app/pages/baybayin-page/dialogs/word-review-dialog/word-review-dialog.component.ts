@@ -13,6 +13,7 @@ import { NgIf } from '@angular/common';
 export class WordReviewDialogComponent {
   words: string[] = [];
   currentWordIndex: number = 0;
+  currentProperNounIndex: number = 0;
   currentCIndex: number = 0;
   currentChIndex: number = 0;
   currentJIndex: number = 0
@@ -34,6 +35,9 @@ export class WordReviewDialogComponent {
   processCurrentWord(): void {
     if (this.currentWordIndex < this.words.length) {
       let currentWord = this.words[this.currentWordIndex];
+      // Find the index of the first capital letter in the current word
+      const capitalLetterMatch = currentWord.match(/[A-Z]/);
+      this.currentProperNounIndex = capitalLetterMatch ? currentWord.indexOf(capitalLetterMatch[0]) : -1; // Finds the first occurrence of a capital letter
       this.currentCIndex = currentWord.indexOf('c');  // Find the first occurrence of 'c'
       this.currentChIndex = currentWord.indexOf('ch');  // Find the first occurrence of 'ch'
       this.currentJIndex = currentWord.indexOf('j');  // Find the first occurrence of 'j'
