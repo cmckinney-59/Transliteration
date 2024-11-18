@@ -19,6 +19,7 @@ export class WordReviewDialogComponent {
   currentJIndex: number = 0
   currentQuIndex: number = 0;
   updatedInput: string = '';
+  isProperNoun: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<WordReviewDialogComponent>,
@@ -72,73 +73,94 @@ export class WordReviewDialogComponent {
     }
   }
 
+  // Replace the word with the user input
+  replaceProperNoun(): void {
+    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 's');
+    this.updateInput();
+    this.processCurrentWord();
+  } 
+
+  // Replace the word with the user input
+  dontReplaceProperNoun(): void {
+    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 's');
+    this.updateInput();
+    this.processCurrentWord();
+  }
+
+  // Set isProperNounTrue
+  setIsProperNounTrue(): void {
+    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 's');
+    this.updateInput();
+    this.processCurrentWord();
+  }
+
   // Replace 'c' (but not 'ch') with 's'
   replaceCWithS(): void {
     this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 's');
     this.updateInput();
-    this.processCurrentWord();  // Process again in case there are more 'c' occurrences
+    this.processCurrentWord();
   }
 
   // Replace 'c' (but not 'ch') with 'k'
   replaceCWithK(): void {
     this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 'k');
     this.updateInput();
-    this.processCurrentWord();  // Process again in case there are more 'c' occurrences
+    this.processCurrentWord();
   }
 
   // Replace 'ch' with 'tiy'
   replaceCWithTiy(): void {
       this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('c', 'tiy');
       this.updateInput();
-      this.processCurrentWord();  // Process again in case there are more 'cc' occurrences
+      this.processCurrentWord();
   }
 
   // Replace 'ch' with 'tiy'
   replaceChWithTiy(): void {
     this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('ch', 'tiy');
     this.updateInput();
-    this.processCurrentWord();  // Process again in case there are more 'ch' occurrences
+    this.processCurrentWord();
   }
 
   // Replace 'ch' with 'k'
   replaceChWithK(): void {
     this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('ch', 'k');
     this.updateInput();
-    this.processCurrentWord();  // Process again in case there are more 'ch' occurrences
+    this.processCurrentWord();
   }
 
   // Replace 'j' with 'diy'
   replaceJWithDiy(): void {
     this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('j', 'diy');
     this.updateInput();
-    this.processCurrentWord();  // Process again in case there are more 'j' occurrences
+    this.processCurrentWord();
   }
   
   // Replace 'ch' with 'k'
   replaceJWithH(): void {
     this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('j', 'h');
     this.updateInput();
-    this.processCurrentWord();  // Process again in case there are more 'j' occurrences
+    this.processCurrentWord();
   }
 
   // Replace 'qu' with 'kuw'
   replaceQuWithKuw(): void {
     this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('qu', 'kuw');
     this.updateInput();
-    this.processCurrentWord();  // Process again in case there are more 'qu' occurrences
+    this.processCurrentWord();
   }
     
   // Replace 'qu' with 'k'
   replaceQuWithK(): void {
     this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('qu', 'k');
     this.updateInput();
-    this.processCurrentWord();  // Process again in case there are more 'qu' occurrences
+    this.processCurrentWord();
   }
 
   // Move to the next word in the input
   nextWord(): void {
     this.currentWordIndex++;
-    this.processCurrentWord();  // Process the next word
+    this.processCurrentWord();
   }
 
   // Update the entire input string after modifying a word

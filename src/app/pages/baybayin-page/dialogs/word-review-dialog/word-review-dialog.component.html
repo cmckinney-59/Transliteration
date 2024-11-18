@@ -9,6 +9,17 @@
   <p>Current "qu" index: <strong>{{ currentQuIndex }}</strong></p>
 </div>
 
+<div *ngIf="currentProperNounIndex !== -1">
+  <p>Is "{{ words[currentWordIndex] }}" a proper noun?</p>
+  <button (click)="setIsProperNounTrue()">"Yes"</button>
+  <button (click)="dontReplaceProperNoun()">"No"</button>
+  <div *ngIf="isProperNoun">
+    <p>Is "{{ words[currentWordIndex] }}" spelled the way it sounds?</p>
+    <button (click)="dontReplaceProperNoun()">"Yes"</button>
+    <button (click)="replaceProperNoun()">"No"</button>
+  </div>
+</div>
+
 <!-- Only show if there is a 'c' that is not followed by 'h' in the current word -->
 <div *ngIf="currentCIndex !== -1 && !words[currentWordIndex].includes('ch')">
   <p>Does the "c" in {{ words[currentWordIndex] }} sound like "s", "k" or "tiy"?</p>
