@@ -43,6 +43,10 @@ export class WordReviewDialogComponent {
       this.currentJIndex = currentWord.indexOf('j');  // Find the first occurrence of 'j'
       this.currentQuIndex = currentWord.indexOf('qu');  // Find the first occurrence of 'qu'
 
+      // Check for proper noun
+      if (this.currentProperNounIndex !== -1) {
+        this.promptForProperNoun();  // Ask to spell word
+      } 
       // Check for 'qu'
       if (this.currentQuIndex !== -1) {
         this.promptForQu();  // Ask for 'qu' replacement
@@ -148,6 +152,11 @@ export class WordReviewDialogComponent {
     const processedText = this.baybayinTextProcessorService.processBaybayinText(this.updatedInput);
     console.log('Processed text:', processedText);
     this.dialogRef.close(processedText);  // Return the final processed text
+  }
+
+  promptForProperNoun(): void {
+    console.log(`Is '${this.words[this.currentWordIndex]}' a proper noun?`);
+    // Show dialog to get user input
   }
 
   promptForC(): void {
