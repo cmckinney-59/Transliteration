@@ -16,7 +16,7 @@
   <div *ngIf="isProperNoun">
     <p>Is "{{ words[currentWordIndex] }}" spelled the way it sounds?</p>
     <button (click)="dontReplaceProperNoun()">"Yes"</button>
-    <button (click)="replaceProperNoun()">"No"</button>
+    <button (click)="replaceProperNoun(userInput)">"No"</button>
   </div>
 </div>
 

@@ -20,6 +20,7 @@ export class WordReviewDialogComponent {
   currentQuIndex: number = 0;
   updatedInput: string = '';
   isProperNoun: boolean = false;
+  userInput: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<WordReviewDialogComponent>,
@@ -73,25 +74,23 @@ export class WordReviewDialogComponent {
     }
   }
 
-  // Replace the word with the user input
-  replaceProperNoun(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 's');
-    this.updateInput();
-    this.processCurrentWord();
-  } 
+// Replace the current word with the user input
+  replaceProperNoun(userInput: string): void {
+    this.words[this.currentWordIndex] = userInput.toLowerCase(); // Replace the current word with the user input
+    this.updateInput(); // Update the input after replacement
+    this.processCurrentWord(); // Continue processing the updated word if needed
+  }
 
-  // Replace the word with the user input
+  // Replace skips the word
   dontReplaceProperNoun(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 's');
+    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].toLowerCase();
     this.updateInput();
     this.processCurrentWord();
   }
 
   // Set isProperNounTrue
   setIsProperNounTrue(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 's');
-    this.updateInput();
-    this.processCurrentWord();
+    this.isProperNoun = true;
   }
 
   // Replace 'c' (but not 'ch') with 's'
