@@ -76,16 +76,15 @@ export class WordReviewDialogComponent {
 
 // Replace the current word with the user input
   replaceProperNoun(userInput: string): void {
-    this.words[this.currentWordIndex] = userInput.toLowerCase(); // Replace the current word with the user input
-    this.updateInput(); // Update the input after replacement
-    this.processCurrentWord(); // Continue processing the updated word if needed
+    this.words[this.currentWordIndex] = userInput.toLowerCase();
+    const updatedWord = this.words[this.currentWordIndex];
+    this.updateWordAndProceed(updatedWord);
   }
 
   // Replace skips the word
   dontReplaceProperNoun(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].toLowerCase();
-    this.updateInput();
-    this.processCurrentWord();
+    const updatedWord = this.words[this.currentWordIndex].toLowerCase();
+    this.updateWordAndProceed(updatedWord);
   }
 
   // Set isProperNounTrue
@@ -95,65 +94,56 @@ export class WordReviewDialogComponent {
 
   // Replace 'c' (but not 'ch') with 's'
   replaceCWithS(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 's');
-    this.updateInput();
-    this.processCurrentWord();
+    const updatedWord = this.words[this.currentWordIndex].replace(/c(?!h)/, 's');
+    this.updateWordAndProceed(updatedWord);
   }
 
   // Replace 'c' (but not 'ch') with 'k'
   replaceCWithK(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace(/c(?!h)/, 'k');
-    this.updateInput();
-    this.processCurrentWord();
+    const updatedWord = this.words[this.currentWordIndex].replace(/c(?!h)/, 'k');
+    this.updateWordAndProceed(updatedWord);
   }
 
   // Replace 'ch' with 'tiy'
   replaceCWithTiy(): void {
-      this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('c', 'tiy');
-      this.updateInput();
-      this.processCurrentWord();
+    const updatedWord = this.words[this.currentWordIndex].replace('c', 'tiy');
+      this.updateWordAndProceed(updatedWord);
   }
 
   // Replace 'ch' with 'tiy'
   replaceChWithTiy(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('ch', 'tiy');
-    this.updateInput();
-    this.processCurrentWord();
+    const updatedWord = this.words[this.currentWordIndex].replace('ch', 'tiy');
+    this.updateWordAndProceed(updatedWord);
   }
 
   // Replace 'ch' with 'k'
   replaceChWithK(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('ch', 'k');
-    this.updateInput();
-    this.processCurrentWord();
+    const updatedWord = this.words[this.currentWordIndex].replace('ch', 'k');
+    this.updateWordAndProceed(updatedWord);
   }
 
   // Replace 'j' with 'diy'
   replaceJWithDiy(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('j', 'diy');
-    this.updateInput();
-    this.processCurrentWord();
+    const updatedWord = this.words[this.currentWordIndex].replace('j', 'diy');
+    this.updateWordAndProceed(updatedWord);
   }
   
   // Replace 'ch' with 'k'
   replaceJWithH(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('j', 'h');
-    this.updateInput();
-    this.processCurrentWord();
+    const updatedWord = this.words[this.currentWordIndex].replace('j', 'h');
+    this.updateWordAndProceed(updatedWord);
   }
 
   // Replace 'qu' with 'kuw'
   replaceQuWithKuw(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('qu', 'kuw');
-    this.updateInput();
-    this.processCurrentWord();
+    const updatedWord = this.words[this.currentWordIndex].replace('qu', 'kuw');
+    this.updateWordAndProceed(updatedWord);
   }
     
   // Replace 'qu' with 'k'
   replaceQuWithK(): void {
-    this.words[this.currentWordIndex] = this.words[this.currentWordIndex].replace('qu', 'k');
-    this.updateInput();
-    this.processCurrentWord();
+    const updatedWord = this.words[this.currentWordIndex].replace('qu', 'k');
+    this.updateWordAndProceed(updatedWord);
   }
 
   // Move to the next word in the input
@@ -199,5 +189,11 @@ export class WordReviewDialogComponent {
   promptForQu(): void {
     console.log(`Does the 'qu' in '${this.words[this.currentWordIndex]}' sound like 'kuw' or 'k'?`);
     // Show dialog to get user input
+  }
+
+  private updateWordAndProceed(newWord: string): void {
+    this.words[this.currentWordIndex] = newWord;
+    this.updateInput();
+    this.processCurrentWord();
   }
 }
