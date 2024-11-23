@@ -3,6 +3,15 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BaybayinTextProcessorService } from '../../services/replacement-logic/baybayin-text-processor.service';
 import { NgIf } from '@angular/common';
 
+enum ReplacementOptions {
+  Tiy = 'tiy',
+  K = 'k',
+  S = 's',
+  Diy = 'diy',
+  H = 'h',
+  Kuw = 'kuw',
+}
+
 @Component({
   selector: 'app-word-review-dialog',
   standalone: true,
@@ -31,7 +40,6 @@ export class WordReviewDialogComponent {
     this.updatedInput = this.data.userInput;
     this.processCurrentWord();  // Start processing the first word
   }
-
 
   // Method to process the current word
   processCurrentWord(): void {
@@ -171,7 +179,7 @@ export class WordReviewDialogComponent {
   }
 
   promptForC(): void {
-    console.log(`Does the 'c' in '${this.words[this.currentWordIndex]}' sound like 's', 'k' or 'ch'?`);
+    console.log(`Does the 'c' in '${this.words[this.currentWordIndex]}' sound like '${ReplacementOptions.S}', '${ReplacementOptions.K}' or '${ReplacementOptions.Tiy}'?`);
     // Show dialog to get user input
   }
 
