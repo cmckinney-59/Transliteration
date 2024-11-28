@@ -1,14 +1,14 @@
 <h2>Word Review</h2>
 
 <!-- Show the current word being processed -->
-<div>
+<!-- <div>
   <p>Current word: <strong>{{ words[currentWordIndex] }}</strong></p>
   <p>Current "c" index: <strong>{{ currentCIndex }}</strong></p>
   <p>Current "ch" index: <strong>{{ currentChIndex }}</strong></p>
   <p>Current "j" index: <strong>{{ currentJIndex }}</strong></p>
   <p>Current "qu" index: <strong>{{ currentQuIndex }}</strong></p>
   <p>Current "proper noun" index: <strong>{{ currentProperNounIndex }}</strong></p>
-</div>
+</div> -->
 
 <div *ngIf="currentProperNounIndex !== -1">
   <p>Is "{{ words[currentWordIndex] }}" a proper noun?</p>
