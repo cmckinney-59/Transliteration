@@ -14,10 +14,17 @@
   <p>Is "{{ words[currentWordIndex] }}" a proper noun?</p>
   <button (click)="setIsProperNounTrue()">"Yes"</button>
   <button (click)="dontReplaceProperNoun()">"No"</button>
+
   <div *ngIf="isProperNoun">
     <p>Is "{{ words[currentWordIndex] }}" spelled the way it sounds?</p>
     <button (click)="dontReplaceProperNoun()">"Yes"</button>
-    <button (click)="replaceProperNoun(userInput)">"No"</button>
+    <button (click)="setisNotPhoneticTrue()">"No"</button>
+
+    <div *ngIf="isNotPhonetic">
+      <p>Please spell "{{ words[currentWordIndex] }}" the way it sounds bellow:</p>
+      <input type="text" id="properNounInput" [(ngModel)]="properNounInput"/>
+      <button (click)="replaceProperNoun(properNounInput)">"Okay"</button>
+    </div>
   </div>
 </div>
 

@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BaybayinTextProcessorService } from '../../services/replacement-logic/baybayin-text-processor.service';
 import { NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 enum ReplacementOptions {
   Tiy = 'tiy',
@@ -15,7 +16,7 @@ enum ReplacementOptions {
 @Component({
   selector: 'app-word-review-dialog',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, FormsModule],
   templateUrl: './word-review-dialog.component.html',
   styleUrls: ['./word-review-dialog.component.scss']
 })
@@ -29,7 +30,8 @@ export class WordReviewDialogComponent {
   currentQuIndex: number = 0;
   updatedInput: string = '';
   isProperNoun: boolean = false;
-  userInput: string = '';
+  isNotPhonetic: boolean = false;
+  properNounInput: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<WordReviewDialogComponent>,
@@ -95,9 +97,14 @@ export class WordReviewDialogComponent {
     this.updateWordAndProceed(updatedWord);
   }
 
-  // Set isProperNounTrue
+  // Set isProperNoun variable to True
   setIsProperNounTrue(): void {
     this.isProperNoun = true;
+  }
+
+  // Set isNotPhonetic varaible to True
+  setisNotPhoneticTrue(): void {
+    this.isNotPhonetic = true;
   }
 
   // Replace 'c' (but not 'ch') with 's'
