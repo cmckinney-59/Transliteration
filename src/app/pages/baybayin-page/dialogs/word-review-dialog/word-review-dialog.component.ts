@@ -58,7 +58,7 @@ export class WordReviewDialogComponent {
         this.promptForProperNoun();  // Ask to spell word
       } 
       // Check for 'qu'
-      if (this.currentQuIndex !== -1) {
+      else if (this.currentQuIndex !== -1) {
         this.promptForQu();  // Ask for 'qu' replacement
       } 
       // Check for 'ch'
