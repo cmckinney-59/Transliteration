@@ -4,6 +4,7 @@ import { ConvertToLowercaseService } from './rules/convert-to-lowercase.service'
 import { ReplaceShWithSiyService } from './rules/replace-sh-with-siy.service';
 import { ReplacePhWithFService } from './rules/replace-ph-with-f.service';
 import { ReplaceThWithTService } from './rules/replace-th-with-t.service';
+import { ReplaceXWithKSService } from './rules/replace-x-with-ks.service';
 import { CapitalizeSecondConsecutiveVowelService } from './rules/capitalize-second-consecutive-vowel.service';
 import { RemoveDuplicateConsonantService } from './rules/remove-duplicate-consonant.service';
 import { ConvertNgAndMgaService } from './rules/convert-ng-and-mga.service';
@@ -23,6 +24,7 @@ export class BaybayinTextProcessorService {
     private replaceShWithSiyService: ReplaceShWithSiyService,
     private replacePhWithFService: ReplacePhWithFService,
     private replaceThWithTService: ReplaceThWithTService,
+    private replaceXWithKSService: ReplaceXWithKSService,
     private capitalizeSecondConsecutiveVowelService: CapitalizeSecondConsecutiveVowelService,
     private removeDuplicateConsonantService: RemoveDuplicateConsonantService,
     private convertNgAndMgaService: ConvertNgAndMgaService,
@@ -38,6 +40,7 @@ export class BaybayinTextProcessorService {
     result = this.replaceShWithSiyService.replaceShWithSiy(result);
     result = this.replacePhWithFService.replacepPhWithF(result);
     result = this.replaceThWithTService.replaceThWithT(result);
+    result = this.replaceXWithKSService.replaceXWithKS(result);
     result = this.capitalizeSecondConsecutiveVowelService.capitalizeSubsequentVowels(result);
     result = this.removeDuplicateConsonantService.removeDuplicateConsonants(result);
     result = this.convertNgAndMgaService.replaceNgAndMga(result);
