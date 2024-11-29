@@ -11,17 +11,21 @@
 </div> -->
 
 <div *ngIf="currentProperNounIndex !== -1">
-  <p>Is "{{ words[currentWordIndex] }}" a proper noun?</p>
-  <button (click)="setIsProperNounTrue()">"Yes"</button>
-  <button (click)="dontReplaceProperNoun()">"No"</button>
+  <div *ngIf="!isProperNoun"> <!-- Hide this section if isProperNoun is true -->
+    <p>Is "{{ words[currentWordIndex] }}" a proper noun?</p>
+    <button (click)="setIsProperNounTrue()">"Yes"</button>
+    <button (click)="dontReplaceProperNoun()">"No"</button>
+  </div>
 
   <div *ngIf="isProperNoun">
-    <p>Is "{{ words[currentWordIndex] }}" spelled the way it sounds?</p>
-    <button (click)="dontReplaceProperNoun()">"Yes"</button>
-    <button (click)="setisNotPhoneticTrue()">"No"</button>
+    <div *ngIf="!isNotPhonetic">
+      <p>Is "{{ words[currentWordIndex] }}" spelled the way it sounds?</p>
+      <button (click)="dontReplaceProperNoun()">"Yes"</button>
+      <button (click)="setisNotPhoneticTrue()">"No"</button>
+  </div>
 
     <div *ngIf="isNotPhonetic">
-      <p>Please spell "{{ words[currentWordIndex] }}" the way it sounds bellow:</p>
+      <p>Please spell "{{ words[currentWordIndex] }}" the way it sounds below:</p>
       <input type="text" id="properNounInput" [(ngModel)]="properNounInput"/>
       <button (click)="replaceProperNoun(properNounInput)">"Okay"</button>
     </div>
