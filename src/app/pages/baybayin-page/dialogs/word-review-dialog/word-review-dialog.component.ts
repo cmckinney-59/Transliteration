@@ -85,12 +85,13 @@ export class WordReviewDialogComponent {
   }
 
 // Replace the current word with the user input
-  replaceProperNoun(userInput: string): void {
-    this.words[this.currentWordIndex] = userInput.toLowerCase();
+  replaceProperNoun(properNounInput: string): void {
+    this.words[this.currentWordIndex] = properNounInput.toLowerCase();
     const updatedWord = this.words[this.currentWordIndex];
     this.updateWordAndProceed(updatedWord);
     this.isProperNoun = false;
     this.isNotPhonetic = false;
+    this.properNounInput = '';
   }
 
   // Replace skips the word
