@@ -2,6 +2,7 @@ BUGS
 
 Dialog:
 - Fix header
+- Style
 
 FEATURES:
 
@@ -31,3 +32,4 @@ FIXED ITEMS:
 - Add proper noun checker
 - Fix navigation panel white bar size when hovering over option
 - Fix space registering as a word
+- Fix multiple questions being asked at once in question dialog
