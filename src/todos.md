@@ -1,17 +1,11 @@
 BUGS
 
-- Fix navigation panel white bar size when hovering over option
-
 Dialog:
 - Fix header
-- Fix space registering as a word
-
 
 FEATURES:
 
-- Add proper noun checker
 - Make it so dialog processor doesn't ask the same word twice
-- Make app not standalone
 - Replace numbers and punctuation with a different font
 - Name all 'processing' methods to 'transliterate'
 - Create a home page
@@ -33,3 +27,7 @@ STYLE
         - Translitoration section is different color
 
 FIXED ITEMS:
+
+- Add proper noun checker
+- Fix navigation panel white bar size when hovering over option
+- Fix space registering as a word
