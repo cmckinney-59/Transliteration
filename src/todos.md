@@ -21,6 +21,10 @@ FEATURES:
 STYLE
 - maybe put the tranliterator in a box by itself
 - maybe make page headers fixed
+- RESIZE SUBMIT BUTTON
+- SPACE SUBMIT BUTTON
+- RESIZE TYPE OR PASTE SOMETHING
+- Add transliterator explaination
 
     - Sydney
     - Not white
