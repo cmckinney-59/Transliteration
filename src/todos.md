@@ -1,3 +1,6 @@
+Priorities:
+
+
 BUGS
 
 Dialog:
@@ -21,8 +24,7 @@ FEATURES:
 STYLE
 - maybe put the tranliterator in a box by itself
 - maybe make page headers fixed
-- RESIZE SUBMIT BUTTON
-- SPACE SUBMIT BUTTON
+
 - RESIZE TYPE OR PASTE SOMETHING
 - Add transliterator explaination
 
@@ -37,3 +39,5 @@ FIXED ITEMS:
 - Fix navigation panel white bar size when hovering over option
 - Fix space registering as a word
 - Fix multiple questions being asked at once in question dialog
+- Resize submit button
+- Space submit button
