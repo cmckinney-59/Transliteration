@@ -30,26 +30,24 @@
             <!-- Header above transliterated text box-->
             <label>Transliterated Text:</label>
     
-            <!-- Copy Text button -->
-            <button class="btn" (click)="copyToClipboard()">Copy</button>
 
-            <!-- Dropdown menu for 'Download as' -->
-            <div class="dropdown">
-                <!-- Button that, when hovered over, reveals the three ways to download transliterated text -->
-                <button class="btn">Download</button>
-                <!-- Houses the three save types -->
-                <div class="dropdown-content">
-                    <!-- Clickable entity that allows user to download transliterated text as a word document -->
-                    <a (click)="generateWordDocument()">Word</a>
-                    <!-- Clickable entity that allows user to download transliterated text as a text file -->
-                    <a (click)="generateTextFile()">Text</a>
-                    <!-- Clickable entity that allows user to download transliterated text as an excel file -->
-                    <a (click)="generateExcelFile()">Excel</a>
-                </div>
-            </div>
+
         </div>
         <!-- Displays the transliterated text in Baybayin script -->
         <p class="baybayin-output">{{ this.processedText }}</p>
+                    
+        <!-- Copy Text button -->
+        <button class="btn" (click)="copyToClipboard()">Copy</button>
+        
+        <!-- Download dropdown button' -->
+        <div class="dropdown">
+            <button class="btn">Download</button>
+            <div class="dropdown-content">
+                <a (click)="generateWordDocument()">Word</a>
+                <a (click)="generateTextFile()">Text</a>
+                <a (click)="generateExcelFile()">Excel</a>
+            </div>
+        </div>
     </div>
 
     <!-- Displays the transliterated text in Roman (this will be removed later) -->
