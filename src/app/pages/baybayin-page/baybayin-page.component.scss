@@ -17,6 +17,17 @@
   background-color: #f9f9f9;         /* Adds a background color inside of box */
 }
 
+.transliteration-input {                     /* Houses styles for baybayin transliterated text output */ /* Sets the font within the Baybayin-output to Baybayin font with a fall back font of sans-serif */
+  font-size: 20px;                     /* Sets the font size of the baybayin-output to 20px */
+  border: 2px solid #000;            /* Creates the box around the output setting the thickness, the type of line, and the line color */
+  padding-left: 15px;                  /* Adds padding inside the left side of the box */
+  width: 100%;                         /* Extends the box to the full width of the screen */
+  box-sizing: border-box;              /* Ensures padding is included within the width */
+  margin-top: 20px;                    /* Adds spacing above the box between the box and the tranliterated text header */
+  min-height: 100px;                   /* Ensures there's some initial height, adjusts as text grows */
+  background-color: #f9f9f9;         /* Adds a background color inside of box */
+}
+
 h2 {                                   /* Houses styles for any 'h2' elements */
   font-size: 25px;                     /* Sets font size for any 'h2' elements */
   margin: 0;                           /* Remove any margin from h2 */
