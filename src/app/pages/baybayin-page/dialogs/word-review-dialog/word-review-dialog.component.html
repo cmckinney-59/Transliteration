@@ -14,21 +14,21 @@
 <div *ngIf="currentProperNounIndex !== -1">
   <div *ngIf="!isProperNoun"> <!-- Hide this section if isProperNoun is true -->
     <p>Is "{{ words[currentWordIndex] }}" a proper noun?</p>
-    <button (click)="setIsProperNounTrue()">Yes</button>
-    <button (click)="dontReplaceProperNoun()">No</button>
+    <button class="btn" (click)="setIsProperNounTrue()">Yes</button>
+    <button class="btn" (click)="dontReplaceProperNoun()">No</button>
   </div>
 
   <div *ngIf="isProperNoun">
     <div *ngIf="!isNotPhonetic">
       <p>Is "{{ words[currentWordIndex] }}" spelled the way it sounds?</p>
-      <button (click)="dontReplaceProperNoun()">Yes</button>
-      <button (click)="setisNotPhoneticTrue()">No</button>
+      <button class="btn" (click)="dontReplaceProperNoun()">Yes</button>
+      <button class="btn" (click)="setisNotPhoneticTrue()">No</button>
   </div>
 
     <div *ngIf="isNotPhonetic">
       <p>Please spell "{{ words[currentWordIndex] }}" the way it sounds below:</p>
       <input type="text" id="properNounInput" [(ngModel)]="properNounInput"/>
-      <button (click)="replaceProperNoun(properNounInput)">Okay</button>
+      <button class="btn" (click)="replaceProperNoun(properNounInput)">Okay</button>
     </div>
   </div>
 </div>
@@ -37,8 +37,8 @@
 <div *ngIf="currentChIndex !== -1 && 
 currentProperNounIndex === -1">
   <p>Does the "ch" in {{ words[currentWordIndex] }} sound like "tiy" or "k"?</p>
-  <button (click)="replaceChWithTiy()">"tiy"</button>
-  <button (click)="replaceChWithK()">"k"</button>
+  <button class="btn" (click)="replaceChWithTiy()">"tiy"</button>
+  <button class="btn" (click)="replaceChWithK()">"k"</button>
 </div>
 
 <!-- Only show if there is a 'c' that is not followed by 'h' in the current word -->
@@ -46,9 +46,9 @@ currentProperNounIndex === -1">
 currentProperNounIndex === -1 && 
 !words[currentWordIndex].includes('ch')">
   <p>Does the "c" in {{ words[currentWordIndex] }} sound like "s", "k" or "tiy"?</p>
-  <button (click)="replaceCWithS()">"s"</button>
-  <button (click)="replaceCWithK()">"k"</button>
-  <button (click)="replaceCWithTiy()">"tiy"</button>
+  <button class="btn" (click)="replaceCWithS()">"s"</button>
+  <button class="btn" (click)="replaceCWithK()">"k"</button>
+  <button class="btn" (click)="replaceCWithTiy()">"tiy"</button>
 </div>
 
 <!-- Only show if there is a 'j' in the current word -->
@@ -57,8 +57,8 @@ currentProperNounIndex === -1 &&
 !words[currentWordIndex].includes('ch') && 
 !words[currentWordIndex].includes('c')">
   <p>Does the "j" in {{ words[currentWordIndex] }} sound like "diy" or "h"?</p>
-  <button (click)="replaceJWithDiy()">"diy"</button>
-  <button (click)="replaceJWithH()">"h"</button>
+  <button class="btn" (click)="replaceJWithDiy()">"diy"</button>
+  <button class="btn" (click)="replaceJWithH()">"h"</button>
 </div>
 
 <!-- Only show if there is a 'qu' in the current word -->
@@ -68,12 +68,12 @@ currentProperNounIndex === -1 &&
 !words[currentWordIndex].includes('c') && 
 !words[currentWordIndex].includes('j')">
   <p>Does the "qu" in {{ words[currentWordIndex] }} sound like "kuw" or "k"?</p>
-  <button (click)="replaceQuWithKuw()">"kuw"</button>
-  <button (click)="replaceQuWithK()">"k"</button>
+  <button class="btn" (click)="replaceQuWithKuw()">"kuw"</button>
+  <button class="btn" (click)="replaceQuWithK()">"k"</button>
 </div>
 
 <!-- Navigation buttons -->
 <div>
-  <button (click)="finish()">Finish</button>
+  <button class="btn" (click)="finish()">Finish</button>
 </div>
 </div>

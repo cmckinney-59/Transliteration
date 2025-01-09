@@ -186,28 +186,23 @@ export class WordReviewDialogComponent {
 
   promptForProperNoun(): void {
     console.log(`Is '${this.words[this.currentWordIndex]}' a proper noun?`);
-    // Show dialog to get user input
   }
 
   promptForC(): void {
     console.log(`Does the 'c' in '${this.words[this.currentWordIndex]}' sound like '${ReplacementOptions.S}', '${ReplacementOptions.K}' or '${ReplacementOptions.Tiy}'?`);
-    // Show dialog to get user input
   }
 
   // Prompt methods (you need to implement the actual dialog for these)
   promptForCh(): void {
     console.log(`Does the 'ch' in '${this.words[this.currentWordIndex]}' sound like '${ReplacementOptions.Tiy}' or '${ReplacementOptions.K}'?`);
-    // Show dialog to get user input
   }
 
   promptForJ(): void {
     console.log(`Does the 'j' in '${this.words[this.currentWordIndex]}' sound like '${ReplacementOptions.Diy}' or '${ReplacementOptions.H}'?`);
-    // Show dialog to get user input
   }
 
   promptForQu(): void {
     console.log(`Does the 'qu' in '${this.words[this.currentWordIndex]}' sound like '${ReplacementOptions.Kuw}' or '${ReplacementOptions.K}'?`);
-    // Show dialog to get user input
   }
 
   private updateWordAndProceed(newWord: string): void {
