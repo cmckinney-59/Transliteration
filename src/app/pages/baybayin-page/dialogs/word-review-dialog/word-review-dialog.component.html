@@ -11,7 +11,7 @@
   <p>Current "proper noun" index: <strong>{{ currentProperNounIndex }}</strong></p>
 </div> -->
 
-<div *ngIf="currentProperNounIndex !== -1">
+@if (currentProperNounIndex !== -1) {
   <div *ngIf="!isProperNoun"> <!-- Hide this section if isProperNoun is true -->
     <p>Is "{{ words[currentWordIndex] }}" a proper noun?</p>
     <button class="btn" (click)="setIsProperNounTrue()">Yes</button>
@@ -31,7 +31,7 @@
       <button class="btn" (click)="replaceProperNoun(properNounInput)">Okay</button>
     </div>
   </div>
-</div>
+}
 
 <!-- Only show if 'ch' is found in the current word -->
 <div *ngIf="currentChIndex !== -1 && 
