@@ -12,65 +12,65 @@
 </div> -->
 
 @if (currentProperNounIndex !== -1) {
-  <div *ngIf="!isProperNoun"> <!-- Hide this section if isProperNoun is true -->
+  @if (!isProperNoun) {
     <p>Is "{{ words[currentWordIndex] }}" a proper noun?</p>
     <button class="btn" (click)="setIsProperNounTrue()">Yes</button>
     <button class="btn" (click)="dontReplaceProperNoun()">No</button>
-  </div>
+  }
 
-  <div *ngIf="isProperNoun">
-    <div *ngIf="!isNotPhonetic">
+  @if (isProperNoun) {
+    @if (!isNotPhonetic) {
       <p>Is "{{ words[currentWordIndex] }}" spelled the way it sounds?</p>
       <button class="btn" (click)="dontReplaceProperNoun()">Yes</button>
       <button class="btn" (click)="setisNotPhoneticTrue()">No</button>
-  </div>
+    }
 
-    <div *ngIf="isNotPhonetic">
+    @if (isNotPhonetic) {
       <p>Please spell "{{ words[currentWordIndex] }}" the way it sounds below:</p>
       <input type="text" id="properNounInput" [(ngModel)]="properNounInput"/>
       <button class="btn" (click)="replaceProperNoun(properNounInput)">Okay</button>
-    </div>
-  </div>
+    }
+  }
 }
 
 <!-- Only show if 'ch' is found in the current word -->
-<div *ngIf="currentChIndex !== -1 && 
-currentProperNounIndex === -1">
+@if (currentChIndex !== -1 && 
+currentProperNounIndex === -1) {
   <p>Does the "ch" in {{ words[currentWordIndex] }} sound like "tiy" or "k"?</p>
   <button class="btn" (click)="replaceChWithTiy()">"tiy"</button>
   <button class="btn" (click)="replaceChWithK()">"k"</button>
-</div>
+}
 
 <!-- Only show if there is a 'c' that is not followed by 'h' in the current word -->
-<div *ngIf="currentCIndex !== -1 && 
+@if (currentCIndex !== -1 && 
 currentProperNounIndex === -1 && 
-!words[currentWordIndex].includes('ch')">
+!words[currentWordIndex].includes('ch')) {
   <p>Does the "c" in {{ words[currentWordIndex] }} sound like "s", "k" or "tiy"?</p>
   <button class="btn" (click)="replaceCWithS()">"s"</button>
   <button class="btn" (click)="replaceCWithK()">"k"</button>
   <button class="btn" (click)="replaceCWithTiy()">"tiy"</button>
-</div>
+}
 
 <!-- Only show if there is a 'j' in the current word -->
-<div *ngIf="currentJIndex !== -1 && 
+@if (currentJIndex !== -1 && 
 currentProperNounIndex === -1 && 
 !words[currentWordIndex].includes('ch') && 
-!words[currentWordIndex].includes('c')">
+!words[currentWordIndex].includes('c')) {
   <p>Does the "j" in {{ words[currentWordIndex] }} sound like "diy" or "h"?</p>
   <button class="btn" (click)="replaceJWithDiy()">"diy"</button>
   <button class="btn" (click)="replaceJWithH()">"h"</button>
-</div>
+}
 
 <!-- Only show if there is a 'qu' in the current word -->
-<div *ngIf="currentQuIndex !== -1 && 
+@if (currentQuIndex !== -1 && 
 currentProperNounIndex === -1 && 
 !words[currentWordIndex].includes('ch') && 
 !words[currentWordIndex].includes('c') && 
-!words[currentWordIndex].includes('j')">
+!words[currentWordIndex].includes('j')) {
   <p>Does the "qu" in {{ words[currentWordIndex] }} sound like "kuw" or "k"?</p>
   <button class="btn" (click)="replaceQuWithKuw()">"kuw"</button>
   <button class="btn" (click)="replaceQuWithK()">"k"</button>
-</div>
+}
 
 <!-- Navigation buttons -->
 <div>
