@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BaybayinTextProcessorService } from '../../services/replacement-logic/baybayin-text-processor.service';
-import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 enum ReplacementOptions {
@@ -16,7 +15,7 @@ enum ReplacementOptions {
 @Component({
   selector: 'app-word-review-dialog',
   standalone: true,
-  imports: [NgIf, FormsModule],
+  imports: [ FormsModule],
   templateUrl: './word-review-dialog.component.html',
   styleUrls: ['./word-review-dialog.component.scss']
 })
