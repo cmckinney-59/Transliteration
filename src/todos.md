@@ -24,6 +24,7 @@ Phase 2:
 - Make it so dialog processor doesn't ask the same word twice
 - Replace numbers and punctuation with a different font
 - Name all 'processing' methods to 'transliterate'
+- Add how to read section
 
 Phase 3:
 

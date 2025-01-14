@@ -15,12 +15,13 @@ import { BaybayinTextProcessorService } from './services/replacement-logic/bayba
 // Imports the BaybayinDesctiptionComponent which houses a brief explanation and history of Baybayin 
 import { BaybayinDescriptionComponent } from './description/baybayin-description.component';
 import { WordReviewDialogComponent } from './dialogs/word-review-dialog/word-review-dialog.component';
+import { HowToReadComponent } from "./how-to-read/how-to-read.component";
 
 //------ Decorator ------//
 @Component({
   selector: 'app-baybayin-page',
   standalone: true,
-  imports: [FormsModule, BaybayinDescriptionComponent, MatDialogModule],
+  imports: [FormsModule, BaybayinDescriptionComponent, MatDialogModule, HowToReadComponent],
   templateUrl: './baybayin-page.component.html',
   styleUrls: ['./baybayin-page.component.scss']
 })
