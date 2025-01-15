@@ -28,11 +28,6 @@
   background-color: #f9f9f9;         /* Adds a background color inside of box */
 }
 
-h2 {                                   /* Houses styles for any 'h2' elements */
-  font-size: 25px;                     /* Sets font size for any 'h2' elements */
-  margin: 0;                           /* Remove any margin from h2 */
-}
-
 .transliterated-header {              /* Houses styles for header to the transliterated output */
   display: flex;                      /* Turns the display into a flexbox (allows for flexible layouts) */ 
   align-items: center;                /* Centers items vertically */
