@@ -7,6 +7,8 @@
 
     <!-- Header written in Baybayin script -->
     <h1 class="baybayin-header">by+byin+</h1>
+    <a (click)="scrollToSection('description-section')">What is Baybayin</a>
+    <a (click)="scrollToSection('how-to-read-section')">How to Read</a>
 
     <!-- Sub-header written in Roman script -->
     <h2 class="sub-header">Baybayin Transliterator</h2>
@@ -54,8 +56,8 @@
     <!-- <div>
         <p>{{ this.processedText }}</p>
     </div> -->
-    
-    <app-baybayin-description></app-baybayin-description>
-    <app-how-to-read></app-how-to-read>
+
+    <app-baybayin-description id="description-section"></app-baybayin-description>
+    <app-how-to-read id="how-to-read-section"></app-how-to-read>
 </body>
 </html>

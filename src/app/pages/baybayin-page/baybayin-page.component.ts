@@ -40,6 +40,13 @@ export class BaybayinPageComponent {
     public dialog: MatDialog
   ) {}
 
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' }); // Smooth scrolling
+    }
+  }
+
 //------ Methods ------//
   async onSubmit(): Promise<void> {
     if (/[c]|ch|j|qu|[A-Z]/.test(this.userInput)) {
