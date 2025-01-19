@@ -5,7 +5,7 @@ Phase 1: DONE
 - Create Transliterator Logic
 
 Phase 2:
-
+- MAKE MOBLE COMPATIBLE
 - Update Baybayin Page UI
     STYLE
     - maybe put the tranliterator in a box by itself
