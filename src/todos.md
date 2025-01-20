@@ -5,7 +5,12 @@ Phase 1: DONE
 - Create Transliterator Logic
 
 Phase 2:
-- MAKE MOBLE COMPATIBLE
+- MAKE MOBLE COMPATIBLE - 360 pixels
+- Change font size when small
+- Collapse sidebar when small
+- Add abilitiy to close side bar
+
+Phase 3:
 - Update Baybayin Page UI
     STYLE
     - maybe put the tranliterator in a box by itself
@@ -26,7 +31,7 @@ Phase 2:
 - Name all 'processing' methods to 'transliterate'
 - Add how to read section
 
-Phase 3:
+Phase 4+:
 
 - Create a home page
 - Create a logo
