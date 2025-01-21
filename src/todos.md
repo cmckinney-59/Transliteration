@@ -6,7 +6,7 @@ Phase 1: DONE
 
 Phase 2:
 - MAKE MOBLE COMPATIBLE - 360 pixels
-- Change font size when small
+- Change font size when small - styles?
 - Collapse sidebar when small
 - Add abilitiy to close side bar
 
