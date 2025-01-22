@@ -1,5 +1,13 @@
 <div class="container">
     <div class="left">
+      <button (click)="item.expand(item)">
+        <md-icon>{{item.icon}}</md-icon>
+        {{item.text}}
+    </button>
+    <div *ngFor="let child of item.children">
+       <button [ngClass]="{'hidden' : !child.visible}">{{child.text}}
+       </button>
+     </div>
       <div class="nav-item-container">
         <a href="/baybayin" routerLinkActive="active" class="nav-item">
           <span class="baybayin-symbol">b</span>
