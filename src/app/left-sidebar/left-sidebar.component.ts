@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './left-sidebar.component.scss'
 })
 export class LeftSidebarComponent {
+  isCollapsed = false;
 
+  toggleNav() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }

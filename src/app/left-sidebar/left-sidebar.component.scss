@@ -7,7 +7,7 @@
   display: flex;                   /* Turns the display into a flexbox (allows for flexible layouts) */ 
   flex-direction: column;          /* Stacks the child elements vertically in a column */
   align-items: center;             /* Children items are aligned in the center of the left element */
-  z-index: 20;                     /* This makes sure that the side bar is always seen in front of elements that are less that level 20 on the z-axis */
+  z-index: 20;                    
 }
  
  .left span {                      /* Targets all 'span' elements within the 'left' element */
@@ -35,7 +35,8 @@
     padding-right: 10px;           /* Gives 10px space between the aurebesh symbol and the word 'Aurebesh' */
   }
 
-  .nav-item-container {            /* Houses all of the navigation buttons to the various transliteration pages */
+  .nav-item-container {
+    padding: 10px;
     margin-top: 20px;              /* Adds a 20px space between the top of the nav bar and the first item */
     display: flex;                 /* Turns the display into a flexbox (allows for flexible layouts) */
     flex-direction: column;        /* Stack items (symbol word pair) vertically */
@@ -54,4 +55,32 @@
   .nav-item:hover {
     background-color: white;  /* When the nav item is hovered over it changes the background color to white */
     width: 100px;
+  }
+
+  .container {
+    display: flex;
+  }
+  
+  .left {
+    transition: width 0.3s ease;
+  }
+  
+  .left.collapsed {
+    width: 0;
+    overflow: hidden;
+  }
+  
+  
+  .toggle-btn {
+    top: 100px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .toggle-btn:hover {
+    background-color: #0056b3;
   }

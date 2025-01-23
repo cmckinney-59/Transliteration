@@ -1,26 +1,19 @@
 <div class="container">
-    <div class="left">
-      <button (click)="item.expand(item)">
-        <md-icon>{{item.icon}}</md-icon>
-        {{item.text}}
-    </button>
-    <div *ngFor="let child of item.children">
-       <button [ngClass]="{'hidden' : !child.visible}">{{child.text}}
-       </button>
-     </div>
-      <div class="nav-item-container">
-        <a href="/baybayin" routerLinkActive="active" class="nav-item">
-          <span class="baybayin-symbol">b</span>
-          <span>Baybayin</span>
-        </a>
-        <a href="/deseret" routerLinkActive="active" class="nav-item">
-          <span class="deseret-symbol">D</span>
-          <span>Deseret</span>
-        </a>
-        <a href="/aurebesh" routerLinkActive="active" class="nav-item">
-          <span class="aurebesh-symbol">A</span>
-          <span>Aurebesh</span>
-        </a>
-      </div>
+  <button class="toggle-btn" (click)="toggleNav()">☰</button>
+  <div class="left" [class.collapsed]="isCollapsed">
+    <div class="nav-item-container">
+      <a href="/baybayin" routerLinkActive="active" class="nav-item">
+        <span class="baybayin-symbol">b</span>
+        <span>Baybayin</span>
+      </a>
+      <a href="/deseret" routerLinkActive="active" class="nav-item">
+        <span class="deseret-symbol">D</span>
+        <span>Deseret</span>
+      </a>
+      <a href="/aurebesh" routerLinkActive="active" class="nav-item">
+        <span class="aurebesh-symbol">A</span>
+        <span>Aurebesh</span>
+      </a>
     </div>
   </div>
+</div>
