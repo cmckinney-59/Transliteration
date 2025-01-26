@@ -8,6 +8,7 @@ Phase 2:
 - MAKE MOBLE COMPATIBLE - 360 pixels
 - Change font size when small - styles?
 - Collapse sidebar when small
+    - Make side bar smaller (currently it just closes)
 - Add abilitiy to close side bar
 
 Phase 3:
