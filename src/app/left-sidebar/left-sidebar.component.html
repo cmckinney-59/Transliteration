@@ -4,15 +4,15 @@
     <div class="nav-item-container">
       <a href="/baybayin" routerLinkActive="active" class="nav-item">
         <span class="baybayin-symbol">b</span>
-        <span class="nav-item-label">Baybayin</span>
+        @if (!isCollapsed) {<span class="nav-item-label">Baybayin</span>}
       </a>
       <a href="/deseret" routerLinkActive="active" class="nav-item">
         <span class="deseret-symbol">D</span>
-        <span class="nav-item-label">Deseret</span>
+        @if (!isCollapsed) {<span class="nav-item-label">Deseret</span>}
       </a>
       <a href="/aurebesh" routerLinkActive="active" class="nav-item">
         <span class="aurebesh-symbol">A</span>
-        <span class="nav-item-label">Aurebesh</span>
+        @if (!isCollapsed) {<span class="nav-item-label">Aurebesh</span>}
       </a>
     </div>
   </div>
