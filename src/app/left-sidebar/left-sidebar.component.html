@@ -1,6 +1,7 @@
 <div class="container">
-  <button class="toggle-btn" (click)="toggleNav()">☰</button>
+  
   <div class="left" [class.collapsed]="isCollapsed">
+    <button class="toggle-btn" (click)="toggleNav()">☰</button>
     <div class="nav-item-container">
       <a href="/baybayin" routerLinkActive="active" class="nav-item">
         <span class="baybayin-symbol">b</span>
