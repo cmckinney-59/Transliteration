@@ -1,6 +1,6 @@
 .left {
   position: fixed;                 /* The Element will remain visible if the user scrolls */
-  top: 100px;                      /* This is how far from the top the sidebar will start. As of now it starts just below the header.*/
+  top: 95px;                      /* This is how far from the top the sidebar will start. As of now it starts just below the header.*/
   left: 0;                         /* This element ensures the left navbar is in the most left position */
   height: calc(100% - 100px);      /* This ensure's the side nav bar goes from the top (100px) and 100% of the rest of the page (all the way down to the bottom) */
   background-color:#EDF6FF;      /* Sets the color of the side bar */ 
@@ -72,10 +72,10 @@
   
   .toggle-btn {
     top: 100px;
+    width: 100%;
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
     cursor: pointer;
     font-size: 20px;
     z-index: 2000;
