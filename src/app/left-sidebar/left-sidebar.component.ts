@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -11,7 +11,16 @@ export class LeftSidebarComponent {
 
   isCollapsed = false;
   
+  constructor() {
+    this.checkScreenSize();
+  }
+
   toggleNav() {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  checkScreenSize() {
+    this.isCollapsed = window.innerWidth < 320;
   }
 }

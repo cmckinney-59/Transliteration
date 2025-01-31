@@ -40,7 +40,8 @@
     margin-top: 20px;              /* Adds a 20px space between the top of the nav bar and the first item */
     display: flex;                 /* Turns the display into a flexbox (allows for flexible layouts) */
     flex-direction: column;        /* Stack items (symbol word pair) vertically */
-    align-items: flex-start;       /* Align to the start (left side) */
+    align-items: center;
+    gap: 10px;
   }
   
   .nav-item {
@@ -83,4 +84,15 @@
   
   .toggle-btn:hover {
     background-color: #0056b3;
+  }
+
+  @media (max-width: 500px) {
+    .left {
+      width: 50px !important;
+      overflow: hidden;
+    }
+    
+    .nav-item-label {
+      display: none !important;
+    }
   }
