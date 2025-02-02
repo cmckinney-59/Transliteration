@@ -40,7 +40,7 @@
     margin-top: 20px;              /* Adds a 20px space between the top of the nav bar and the first item */
     display: flex;                 /* Turns the display into a flexbox (allows for flexible layouts) */
     flex-direction: column;        /* Stack items (symbol word pair) vertically */
-    align-items: center;
+    align-items: right;
     gap: 10px;
   }
   
