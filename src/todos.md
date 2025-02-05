@@ -5,10 +5,11 @@ Phase 1: DONE
 - Create Transliterator Logic
 
 Phase 2:
-- MAKE MOBLE COMPATIBLE - 360 pixels
+- MAKE MOBLE COMPATIBLE - 500 pixels
+- Change font to fit to page when size reduced
 - Change font size when small - styles?
 - Collapse sidebar when small
-    - Make side bar smaller (currently it just closes)
+    - Allow to uncollapse when small
 - Add abilitiy to close side bar
 
 Phase 3:
