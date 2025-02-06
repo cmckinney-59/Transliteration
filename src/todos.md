@@ -7,7 +7,6 @@ Phase 1: DONE
 Phase 2:
 - MAKE MOBLE COMPATIBLE - 500 pixels
 - Change font to fit to page when size reduced
-- Change font size when small - styles?
 - Collapse sidebar when small
     - Allow to uncollapse when small
 - Add abilitiy to close side bar
