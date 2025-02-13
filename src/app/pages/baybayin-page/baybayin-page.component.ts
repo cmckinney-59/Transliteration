@@ -43,7 +43,7 @@ export class BaybayinPageComponent {
   scrollToSection(sectionId: string) {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' }); // Smooth scrolling
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Smooth scrolling
     }
   }
 

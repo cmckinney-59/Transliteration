@@ -2,4 +2,8 @@ img {
     display: block;
     margin: 0 auto;
   }
-  
+
+.sub-header {
+  padding-top: 100px; /* Adjust this to match your header height */
+  margin-top: -80px; /* Same value as padding-top */
+}
