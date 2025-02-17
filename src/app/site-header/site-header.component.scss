@@ -13,6 +13,10 @@
   height: 50px;                  /* Sets the height of the header */
 }
 
+.middle {
+  color: aliceblue;
+}
+
   .left {                         /* Houses the styling for the left side of the header (currently only the logo is here) */
     display: flex;                /* Turns the display into a flexbox (allows for flexible layouts) */
     align-items: center;          /*  */
