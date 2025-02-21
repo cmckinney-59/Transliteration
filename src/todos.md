@@ -10,6 +10,7 @@ Phase 2:
 - Collapse sidebar when small
     - Allow to uncollapse when small
 - Add abilitiy to close side bar
+- Fix pictures
 
 Phase 3:
 - Update Baybayin Page UI
