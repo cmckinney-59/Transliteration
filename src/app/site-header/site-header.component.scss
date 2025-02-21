@@ -17,18 +17,25 @@
   color: aliceblue;
 }
 
-  .left {                         /* Houses the styling for the left side of the header (currently only the logo is here) */
-    display: flex;                /* Turns the display into a flexbox (allows for flexible layouts) */
-    align-items: center;          /*  */
-  }
+.left {                         /* Houses the styling for the left side of the header (currently only the logo is here) */
+  display: flex;                /* Turns the display into a flexbox (allows for flexible layouts) */
+  align-items: center;  
+}
 
-  .logo {                         /* Houses the styling logic for the logo in the header element */
-    height: 50px;
-    padding-left: 45px;                /* Sets the height of the logo */
-  }
+.text-logo-button {               /* Targets the baybayin symbol on the left side of the nav bar items */
+  font-family: 'Baybayin';       /* Sets the font to the custom font 'Baybayin' found in the styles.scss file */
+  height: 50px;
+  padding-left: 45px;
+  font-size: 24px;          /* Gives 10px space between the baybayin symbol and the word 'Baybayin' */
+}
 
-  .right {                        /* Houses the styling for the right side of the header (currently only the Menu button is here) */
-    display: flex;                /* Turns the display into a flexbox (allows for flexible layouts) */
-    align-items: center;          /* Children items are aligned in the center HORIZONTALLY of the header element */
-    margin-right: 25px;           /* Space from the right edge of the screen */
-  }
+.logo {                         /* Houses the styling logic for the logo in the header element */
+  height: 50px;
+  padding-left: 45px;                /* Sets the height of the logo */
+}
+
+.right {                        /* Houses the styling for the right side of the header (currently only the Menu button is here) */
+  display: flex;                /* Turns the display into a flexbox (allows for flexible layouts) */
+  align-items: center;          /* Children items are aligned in the center HORIZONTALLY of the header element */
+  margin-right: 25px;           /* Space from the right edge of the screen */
+}
