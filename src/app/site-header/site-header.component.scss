@@ -26,7 +26,8 @@
   font-family: 'Baybayin';       /* Sets the font to the custom font 'Baybayin' found in the styles.scss file */
   height: 50px;
   padding-left: 45px;
-  font-size: 24px;          /* Gives 10px space between the baybayin symbol and the word 'Baybayin' */
+  font-size: 24px;
+  color: white;          /* Gives 10px space between the baybayin symbol and the word 'Baybayin' */
 }
 
 .logo {                         /* Houses the styling logic for the logo in the header element */
