@@ -11,6 +11,7 @@ Phase 2:
     - Allow to uncollapse when small
 - Add abilitiy to close side bar
 - Fix pictures
+- Make Baybayin symbol larger
 
 Phase 3:
 - Update Baybayin Page UI
