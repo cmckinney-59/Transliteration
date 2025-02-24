@@ -8,7 +8,7 @@ import { Component, HostListener } from '@angular/core';
   styleUrl: './left-sidebar.component.scss'
 })
 export class LeftSidebarComponent {
-
+  isMobile = false;
   isCollapsed = false;
   
   constructor() {
@@ -19,8 +19,17 @@ export class LeftSidebarComponent {
     this.isCollapsed = !this.isCollapsed;
   }
 
+  ngOnInit() {
+    this.checkScreenSize();
+  }
+
   @HostListener('window:resize', ['$event'])
+
+  onResize() {
+    this.checkScreenSize();
+  }
+
   checkScreenSize() {
-    this.isCollapsed = window.innerWidth < 320;
+    this.isMobile = window.innerWidth < 768;
   }
 }
