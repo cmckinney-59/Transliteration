@@ -15,5 +15,20 @@
         @if (!isCollapsed) {<span class="nav-item-label">Aurebesh</span>}
       </a>
     </div>
+    <button class="toggle-btn" (click)="toggleNav()">☰</button>
+    <div class="nav-item-container">
+      <a href="/baybayin" routerLinkActive="active" class="nav-item">
+        <span class="baybayin-symbol">b</span>
+        @if (!isCollapsed) {<span class="nav-item-label">Baybayin</span>}
+      </a>
+      <a href="/deseret" routerLinkActive="active" class="nav-item">
+        <span class="deseret-symbol">D</span>
+        @if (!isCollapsed) {<span class="nav-item-label">Deseret</span>}
+      </a>
+      <a href="/aurebesh" routerLinkActive="active" class="nav-item">
+        <span class="aurebesh-symbol">A</span>
+        @if (!isCollapsed) {<span class="nav-item-label">Aurebesh</span>}
+      </a>
+    </div>
   </div>
 </div>
