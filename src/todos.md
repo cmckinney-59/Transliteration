@@ -12,6 +12,7 @@ Phase 2:
 - Add abilitiy to close side bar
 - Fix pictures
 - Make Baybayin symbol larger
+- Make Baybayin symbol button
 
 Phase 3:
 - Update Baybayin Page UI
